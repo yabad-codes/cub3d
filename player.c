@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:07:40 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/18 16:49:52 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/18 17:52:56 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,7 @@ void	render_player(t_mlx *mlx)
 		}
 		j++;
 	}
-	j = mlx->plyr.y + TILE / 2 - mlx->plyr.side / 2 + mlx->plyr.side / 2;
-	i = mlx->plyr.x + TILE / 2 - mlx->plyr.side / 2 + mlx->plyr.side / 2;
-	line_draw(mlx, i, j, i + cos(mlx->plyr.r_angle) * mlx->plyr.side * 2, j + sin(mlx->plyr.r_angle) * mlx->plyr.side * 2);
+	raycaster(mlx);
 }
 
 char	get_player_direction(t_mlx *mlx)
@@ -80,6 +78,7 @@ void	init_player(t_mlx *mlx)
 	get_player_pos(mlx, &mlx->plyr.x, &mlx->plyr.y);
 	mlx->plyr.side = TILE / 4;
 	mlx->plyr.speed = 4;
+	mlx->plyr.fov = deg_to_radian(60);
 }
 
 void	update_player(t_mlx *mlx, mlx_key_data_t keydata)

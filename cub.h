@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:42 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/18 15:49:16 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/18 17:52:30 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_player
 	float	y;
 	int		side;
 	int		speed;
+	float	fov;
 	float	r_angle;
 }	t_player;
 
@@ -86,4 +87,7 @@ float		deg_to_radian(float degree);
 
 /* Key and mouse handling */
 void		key_handler(mlx_key_data_t key, void *param);
+
+/* Raycasting */
+void		raycaster(t_mlx *mlx);
 #endif

@@ -3,6 +3,7 @@ SRC = 	main.c \
 		math.c \
 		player.c \
 		key_handler.c \
+		raycast.c \
 		free.c \
 
 OBJ = ${SRC:.c=.o}
