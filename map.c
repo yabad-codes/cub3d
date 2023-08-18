@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 12:48:11 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/18 12:49:34 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/18 15:56:37 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,3 +97,13 @@ void	render_map(t_mlx *mlx)
 	}
 }
 
+bool	has_wall(t_mlx *mlx, float x, float y)
+{
+	if (x < 0 || x > mlx->map->width || y < 0 || y > mlx->map->height)
+		return (true);
+	x = (float)round(x / TILE);
+	y = (float)round(y / TILE);
+	if (mlx->map->grid[(int)y][(int)x] == '1')
+		return (true);
+	return (false);
+}

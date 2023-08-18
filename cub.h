@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:42 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/18 13:46:45 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/18 15:49:16 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include <fcntl.h>
+# include <stdbool.h>
 # include "libft/libft.h"
 # include <stdio.h>
 # include "MLX42/include/MLX42/MLX42.h"
@@ -77,6 +78,7 @@ void		update_player(t_mlx *mlx, mlx_key_data_t keydata);
 /* Map */
 void		render_map(t_mlx *mlx);
 t_map_info	*get_map_info(char *path);
+bool		has_wall(t_mlx *mlx, float x, float y);
 
 /* Math */
 void		line_draw(t_mlx *mlx, float x0, float y0, float x1, float y1);

@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:07:40 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/18 13:46:24 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/18 16:49:52 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,23 @@ void	init_player(t_mlx *mlx)
 }
 
 void	update_player(t_mlx *mlx, mlx_key_data_t keydata)
-{	
-	if (keydata.key == MLX_KEY_UP)
+{
+	float	new_x;
+	float	new_y;
+	int		sign;
+
+	sign = 1;
+	if (keydata.key == MLX_KEY_UP || keydata.key == MLX_KEY_DOWN)
 	{
-		mlx->plyr.x = mlx->plyr.x - mlx->plyr.speed * cos(mlx->plyr.r_angle);
-		mlx->plyr.y = mlx->plyr.y - mlx->plyr.speed * sin(mlx->plyr.r_angle);
-	}
-	else if (keydata.key == MLX_KEY_DOWN)
-	{
-		mlx->plyr.x = mlx->plyr.x + mlx->plyr.speed * cos(mlx->plyr.r_angle);
-		mlx->plyr.y = mlx->plyr.y + mlx->plyr.speed * sin(mlx->plyr.r_angle);
+		if (keydata.key == MLX_KEY_UP)
+			sign = -1;
+		new_x = mlx->plyr.x + sign * mlx->plyr.speed * cos(mlx->plyr.r_angle);
+		new_y = mlx->plyr.y + sign * mlx->plyr.speed * sin(mlx->plyr.r_angle);
+		if (!has_wall(mlx, new_x, new_y))
+		{
+			mlx->plyr.x = new_x;
+			mlx->plyr.y = new_y;
+		}
 	}
 	else if (keydata.key == MLX_KEY_RIGHT)
 		mlx->plyr.r_angle += 0.1;
