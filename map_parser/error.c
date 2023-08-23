@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 12:05:37 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/23 16:27:25 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/08/23 16:43:30 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	error_map_cmps(char *message, char **component, \
 	ft_putstr_fd("ERROR\n", 2);
 	ft_putstr_fd(message, 2);
 	ft_putstr_fd("\n", 2);
-	while (1) ;
 	exit(EXIT_FAILURE);
 }
 
