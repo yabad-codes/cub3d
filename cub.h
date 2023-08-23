@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:42 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/23 13:03:55 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/08/23 16:23:34 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct s_map_info {
 	u_int32_t	ceil_clr;
 }	t_map_info;
 
-void		extract_map_cmps(t_map_info *map_cmps, char *map_scene, \
+void		extract_map_cmps(t_map_info *map_scene, char *map_file, \
 									char *component_checks[]);
 void		valid_map_scene_cmps(char *components[], t_map_info *map_scene);
 
@@ -68,7 +68,7 @@ void		free_2d_arr(char **arr);
 void		error_map_cmps(char *message, char **component, \
 					char *component_checks[], t_map_info *map_scene);
 
-void		error_file(char *file);
+void		error_file(char *file, t_map_info *map_scene);
 
 void		error_map_content(char *message);
 
@@ -84,7 +84,9 @@ bool		not_valid_map_components(char cmp);
 
 void		free_map_scene(t_map_info *map_scene);
 
-t_map_info	*parse_map(char *map);
+bool		is_newline(char **component);
+
+t_map_info	*parse_map(char *map_file);
 
 /**************************************************************/
 /*                         RAYCASTING                         */

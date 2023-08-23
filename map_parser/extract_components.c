@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 19:07:07 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/23 13:03:00 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/08/23 16:23:58 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool	extract_cmps(char *line, char *component_checks[], \
 	component = ft_split(line, ' ');
 	if (!component)
 		exit(EXIT_FAILURE);
-	if (!ft_strcmp(component[0], "\n"))
+	if (is_newline(component))
 		return (true);
 	type_cmp = get_type(component[0]);
 	if (type_cmp != NONE && component_checks[type_cmp] != NULL)
@@ -103,30 +103,30 @@ void	check_unexist_map_components(t_map_info *map_scene, \
 	}
 }
 
-void	extract_map_cmps(t_map_info *map_cmps, char *map_scene, \
+void	extract_map_cmps(t_map_info *map_scene, char *map_file, \
 										char *component_checks[])
 {
 	char	*line;
 	char	**component;
 	int		fd;
 
-	fd = open(map_scene, O_RDONLY);
+	fd = open(map_file, O_RDONLY);
 	if (fd == -1)
-		error_file(map_scene);
+		error_file(map_file, map_scene);
 	line = get_next_line(fd);
 	while (line)
 	{
 		if (line[0] != '\n' && line[ft_strlen(line) - 1] == '\n')
 			line[ft_strlen(line) - 1] = '\0';
-		if (!extract_cmps(line, component_checks, map_cmps))
+		if (!extract_cmps(line, component_checks, map_scene))
 			break ;
 		free(line);
 		line = get_next_line(fd);
 	}
-	check_unexist_map_components(map_cmps, component_checks);
+	check_unexist_map_components(map_scene, component_checks);
 	while (line)
 	{
-		map_cmps->grid = fill_2d_map(map_cmps->grid, line);
+		map_scene->grid = fill_2d_map(map_scene->grid, line);
 		line = get_next_line(fd);
 	}
 	close(fd);

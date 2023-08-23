@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:45:45 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/23 13:00:56 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/08/23 16:39:50 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	map_resolution(t_map_info *map_scene)
 		map_scene->width++;
 }
 
-t_map_info	*parse_map(char *map)
+t_map_info	*parse_map(char *map_file)
 {
 	t_map_info	*map_scene;
 	char		*component_checks[6];
@@ -57,7 +57,7 @@ t_map_info	*parse_map(char *map)
 		exit(EXIT_FAILURE);
 	map_scene->grid = NULL;
 	// 1 - Extract components
-	extract_map_cmps(map_scene, map, component_checks);
+	extract_map_cmps(map_scene, map_file, component_checks);
 	// 2 - Check if the components are valid one by one (COLORS, TEXTURES).
 	valid_map_scene_cmps(component_checks, map_scene);
 	// 3 - Check if the map content is valid (SURROUNDED BY WALLS.....).

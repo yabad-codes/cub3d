@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 12:16:34 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/23 13:04:57 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/08/23 16:23:20 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,16 @@ bool	is_adjacent_to_empty_space(char **grid, int x, int y)
 		grid[y + 1][x] == ' ' || \
 		grid[y - 1][x] == ' ')
 		return (true);
+	return (false);
+}
+
+bool	is_newline(char **component)
+{
+	if (!ft_strcmp(component[0], "\n"))
+	{
+		free(component[0]);
+		free(component);
+		return (true);
+	}
 	return (false);
 }

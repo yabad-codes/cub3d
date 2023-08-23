@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:48:32 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/23 12:26:53 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/08/23 16:38:57 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,20 @@ bool	is_valid_rgb_color(char *color_cmp, u_int32_t *color)
 void	valid_map_scene_cmps(char *components[], t_map_info *map_scene)
 {
 	if (!are_textures_valid(components, map_scene))
+	{
+		free_2d_arr(map_scene->grid);
 		error_map_cmps("Invalid Texture Path", NULL, components, map_scene);
+	}
 	if (!is_valid_rgb_color(components[4], &(map_scene->floor_clr)))
+	{
+		free_2d_arr(map_scene->grid);
 		error_map_cmps("Invalid RGB Color", NULL, components, map_scene);
+	}
 	if (!is_valid_rgb_color(components[5], &(map_scene->ceil_clr)))
+	{
+		free_2d_arr(map_scene->grid);
 		error_map_cmps("Invalid RGB Color", NULL, components, map_scene);
+	}
 	free(components[4]);
 	free(components[5]);
 }
