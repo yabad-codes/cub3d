@@ -3,80 +3,99 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 10:29:31 by yabad             #+#    #+#             */
-/*   Updated: 2022/10/27 16:01:38 by yabad            ###   ########.fr       */
+/*   Created: 2022/10/16 17:13:35 by ael-maar          #+#    #+#             */
+/*   Updated: 2023/08/23 13:06:16 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(const char *s)
+size_t	ft_strlen(const char *str)
 {
-	int	i;
+	size_t	len;
 
-	if (!s)
+	if (!str)
 		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*join_strs(char *s1, char *s2)
 {
-	int	i;
-	int	ls;
-
-	i = 0;
-	ls = ft_strlen(s);
-	while (i < ls)
-	{
-		if (s[i] == (char)c)
-			return ((char *)s + i);
-		i++;
-	}
-	return (NULL);
-}
-
-void	*ft_memcpy(void *dst, const void *src, int len)
-{
-	int		i;
-	char	*dstp;
-	char	*srcp;
-
-	if (!dst && !src)
-		return (NULL);
-	dstp = dst;
-	srcp = (char *)src;
-	i = 0;
-	while (i < len)
-	{
-		dstp[i] = srcp[i];
-		i++;
-	}
-	return (dst);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	char	*s;
-	int		i;
-	int		j;
+	char	*join;
+	size_t	i;
 
 	if (!s1 && !s2)
 		return (NULL);
-	i = ft_strlen(s1);
-	j = ft_strlen(s2);
-	s = (char *)malloc((i + j + 1) * sizeof(char));
-	if (!s)
+	join = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	i = 0;
+	if (join)
 	{
-		free(s1);
-		return (NULL);
+		while (s1 && s1[i])
+		{
+			join[i] = s1[i];
+			i++;
+		}
+		while (s2 && *s2)
+			join[i++] = *s2++;
+		join[i] = '\0';
 	}
-	ft_memcpy(s, s1, i);
-	ft_memcpy(s + i, s2, j);
-	s[i + j] = '\0';
-	return (s);
+	free(s1);
+	return (join);
+}
+
+char	*read_from_file(int fd, char *left)
+{
+	char		buf[BUFFER_SIZE + 1];
+	char		*line;
+	size_t		i;
+	int			r;
+
+	line = NULL;
+	line = join_strs(line, left);
+	free(left);
+	r = read(fd, buf, BUFFER_SIZE);
+	while (r > 0)
+	{
+		buf[r] = '\0';
+		line = join_strs(line, buf);
+		i = 0;
+		while (buf[i] && buf[i] != '\n')
+			i++;
+		if (buf[i] == '\n')
+			break ;
+		i = 0;
+		buf[0] = 0;
+		r = read(fd, buf, BUFFER_SIZE);
+	}
+	return (line);
+}
+
+char	*check_nl_and_alloc_left(char *line)
+{
+	size_t	i;
+	size_t	j;
+	char	*left;
+
+	i = 0;
+	while (line[i] && line[i] != '\n')
+		i++;
+	j = 0;
+	left = NULL;
+	if (line[i] == '\n')
+	{
+		if (line[++i])
+		{
+			left = malloc(ft_strlen(&line[i]) + 1);
+			while (line[i])
+				left[j++] = line[i++];
+			left[j] = '\0';
+		}
+	}
+	line[i - j] = '\0';
+	return (left);
 }
