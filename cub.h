@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:42 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/23 16:23:34 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/08/24 19:47:36 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "map_parser/get_next_line/get_next_line.h"
 # include "Libft/libft.h"
 
+# define TILE 60
 /*************************************************************/
 /*                         MAP_PARSE                         */
 /*************************************************************/
@@ -46,6 +47,8 @@ typedef enum e_direction {
 
 typedef struct s_map_info {
 	char		**grid;
+	int			rows;
+	int			cols;
 	int			width;
 	int			height;
 	t_direction	direction;
