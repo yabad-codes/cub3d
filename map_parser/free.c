@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 12:08:04 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/23 12:08:22 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/08/24 19:58:55 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_2d_arr(char **arr)
 	int	i;
 
 	i = 0;
-	while (arr[i])
+	while (arr && arr[i])
 		free(arr[i++]);
 	free(arr);
 }
