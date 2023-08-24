@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 19:07:07 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/23 16:23:58 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/08/24 20:11:30 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ void	extract_map_cmps(t_map_info *map_scene, char *map_file, \
 										char *component_checks[])
 {
 	char	*line;
-	char	**component;
 	int		fd;
 
 	fd = open(map_file, O_RDONLY);
