@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:45:45 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/23 16:39:50 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/08/24 19:56:25 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,21 @@ void	player_direction(t_map_info *map_scene)
 
 void	map_resolution(t_map_info *map_scene)
 {
-	map_scene->width = 0;
-	map_scene->height = map_len(map_scene->grid);
+	int	col;
+	int	row_len;
 
-	while (map_scene->grid[0][map_scene->width])
-		map_scene->width++;
+	map_scene->rows = ft_strlen(map_scene->grid[0]);
+	map_scene->cols = map_len(map_scene->grid);
+	col = 1;
+	while (col < map_scene->cols)
+	{
+		row_len = ft_strlen(map_scene->grid[col]);
+		if (row_len > map_scene->rows)
+			map_scene->rows = row_len;
+		col++;
+	}
+	map_scene->width = map_scene->rows * TILE;
+	map_scene->height = map_scene->cols * TILE;
 }
 
 t_map_info	*parse_map(char *map_file)
