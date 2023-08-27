@@ -10,7 +10,7 @@ OBJ = ${SRC:.c=.o}
 
 NAME = cub3D
 
-CC = cc -fsanitize=address -g
+CC = cc
 
 CPPFLAGS = -Wall -Wextra -Werror
 

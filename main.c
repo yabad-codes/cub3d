@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:27 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/18 17:28:21 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/27 13:18:20 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	conductor(t_mlx *mlx)
 	init_player(mlx);
 	render_map(mlx);
 	render_player(mlx);
-	raycaster(mlx);
 }
 
 int	main(int ac, char **av)

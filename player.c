@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:07:40 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/18 17:52:56 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/27 20:54:34 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,11 @@
 
 void	render_player(t_mlx *mlx)
 {
-	float	i;
-	float	j;
-	
-	j = mlx->plyr.y + TILE / 2 - mlx->plyr.side / 2;
-	while (j < mlx->plyr.y + TILE / 2 - mlx->plyr.side / 2 + mlx->plyr.side)
-	{
-		i = mlx->plyr.x + TILE / 2 - mlx->plyr.side / 2;
-		while (i < mlx->plyr.x + TILE / 2 - mlx->plyr.side / 2 + mlx->plyr.side)
-		{
-			mlx_put_pixel(mlx->img, i, j, 0xFF000050);
-			i++;
-		}
-		j++;
-	}
+	mlx_put_pixel(mlx->img, mlx->plyr.x, mlx->plyr.y, 0x0000FFFF);
+	line_draw(mlx, mlx->plyr.x, \
+					mlx->plyr.y, \
+					mlx->plyr.x + cos(mlx->plyr.r_angle) * 20, \
+					mlx->plyr.y + sin(mlx->plyr.r_angle) * 20, 0x0000FFFF);
 	raycaster(mlx);
 }
 
@@ -40,7 +31,7 @@ char	get_player_direction(t_mlx *mlx)
 	}
 	if (mlx->map->direction == SO)
 	{
-		mlx->plyr.r_angle = deg_to_radian(-90);
+		mlx->plyr.r_angle = deg_to_radian(270);
 		return ('S');
 	}
 	if (mlx->map->direction == WE)
@@ -69,15 +60,16 @@ void	get_player_pos(t_mlx *mlx, float *x, float *y)
 		}
 		break ;
 	}
-	*y = i * TILE;
-	*x = (int)(ft_strchr(mlx->map->grid[i], plyr_dir) - mlx->map->grid[i]) * TILE;
+	*y = i * TILE + TILE / 2;
+	*x = (int)(ft_strchr(mlx->map->grid[i], plyr_dir) - mlx->map->grid[i]) * TILE + TILE / 2;
+	printf("P(%f, %f)\n", *x / TILE, *y / TILE);
 }
 
 void	init_player(t_mlx *mlx)
 {
 	get_player_pos(mlx, &mlx->plyr.x, &mlx->plyr.y);
 	mlx->plyr.side = TILE / 4;
-	mlx->plyr.speed = 4;
+	mlx->plyr.speed = 10;
 	mlx->plyr.fov = deg_to_radian(60);
 }
 
@@ -90,7 +82,7 @@ void	update_player(t_mlx *mlx, mlx_key_data_t keydata)
 	sign = 1;
 	if (keydata.key == MLX_KEY_UP || keydata.key == MLX_KEY_DOWN)
 	{
-		if (keydata.key == MLX_KEY_UP)
+		if (keydata.key == MLX_KEY_DOWN)
 			sign = -1;
 		new_x = mlx->plyr.x + sign * mlx->plyr.speed * cos(mlx->plyr.r_angle);
 		new_y = mlx->plyr.y + sign * mlx->plyr.speed * sin(mlx->plyr.r_angle);
@@ -101,9 +93,9 @@ void	update_player(t_mlx *mlx, mlx_key_data_t keydata)
 		}
 	}
 	else if (keydata.key == MLX_KEY_RIGHT)
-		mlx->plyr.r_angle += 0.1;
+		mlx->plyr.r_angle += 0.01;
 	else
-		mlx->plyr.r_angle -= 0.1;
+		mlx->plyr.r_angle -= 0.01;
 	render_map(mlx);
 	render_player(mlx);
 }

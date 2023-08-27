@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 12:48:11 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/18 15:56:37 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/27 20:50:37 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ char	**get_grid(void)
 	grid[2] = ft_strdup("        1011000001110000000000001");
 	grid[3] = ft_strdup("        1001000000000000000000001");
 	grid[4] = ft_strdup("111111111011000001110000000000001");
-	grid[5] = ft_strdup("100000000011000001110111111111111");
+	grid[5] = ft_strdup("100000000011000001110111111101111");
 	grid[6] = ft_strdup("11110111111111011100000000001    ");
 	grid[7] = ft_strdup("11110111111111011101010000001    ");
-	grid[8] = ft_strdup("11000000110101011100000010001    ");
+	grid[8] = ft_strdup("11000000110101011100100010001    ");
 	grid[9] = ft_strdup("10000000000000001100000010001    ");
 	grid[10] = ft_strdup("10000000000000001101010010001    ");
-	grid[11] = ft_strdup("11000001110101011111011110W0111  ");
+	grid[11] = ft_strdup("11000001110101011111011110S0111  ");
 	grid[12] = ft_strdup("11110111 1110101 101111010001    ");
 	grid[13] = ft_strdup("11111111 1111111 111111111111    ");
 	grid[14] = NULL;
@@ -50,7 +50,7 @@ t_map_info	*get_map_info(char *path)
 	map->cols = 14;
 	map->width = map->rows * TILE;
 	map->height = map->cols * TILE;
-	map->direction = WE;
+	map->direction = SO;
 	map->no_text = NULL;
 	map->so_text = NULL;
 	map->we_text = NULL;
@@ -65,16 +65,18 @@ void	draw_tile(mlx_image_t *img, int px, int py, unsigned int color)
 	int	i;
 	int	j;
 
-	j = (py * TILE) - 1;
-	while (++j < ((py * TILE) + TILE))
+	j = py * TILE;
+	while (j < ((py * TILE) + TILE))
 	{
-		i = (px * TILE) - 1;
-		while (++i < ((px * TILE) + TILE))
+		i = px * TILE;
+		while (i < ((px * TILE) + TILE))
 		{
 			mlx_put_pixel(img, i, j, color);
 			if (!(i % TILE) || !(j % TILE))
 				mlx_put_pixel(img, i, j, 0x0);
+			i++;
 		}
+		j++;
 	}
 }
 
@@ -97,12 +99,21 @@ void	render_map(t_mlx *mlx)
 	}
 }
 
+#define EPSILON 0.0001
+
 bool	has_wall(t_mlx *mlx, float x, float y)
 {
 	if (x < 0 || x > mlx->map->width || y < 0 || y > mlx->map->height)
 		return (true);
-	x = (float)round(x / TILE);
-	y = (float)round(y / TILE);
+	// if (x != 0 && y != 0 && !((int)x % TILE) && !((int)y % TILE))
+	// {
+	// 	x += EPSILON;
+	// 	y += EPSILON;
+	// }
+	x = floor(x / TILE);
+	y = floor(y / TILE);
+	if (x < 0 || x >= mlx->map->rows || y < 0 || y >= mlx->map->cols)
+		return (false);
 	if (mlx->map->grid[(int)y][(int)x] == '1')
 		return (true);
 	return (false);

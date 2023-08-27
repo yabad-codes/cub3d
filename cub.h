@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:42 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/18 17:52:30 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/27 20:31:59 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,9 @@ t_map_info	*get_map_info(char *path);
 bool		has_wall(t_mlx *mlx, float x, float y);
 
 /* Math */
-void		line_draw(t_mlx *mlx, float x0, float y0, float x1, float y1);
+void		line_draw(t_mlx *mlx, int X0, int Y0, int X1, int Y1, unsigned int color);
 float		deg_to_radian(float degree);
+float		normalize_angle(float angle);
 
 /* Key and mouse handling */
 void		key_handler(mlx_key_data_t key, void *param);
