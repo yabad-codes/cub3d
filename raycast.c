@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:28:34 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/27 20:53:11 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/28 17:36:09 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,12 +113,6 @@ void raycaster(t_mlx *mlx)
 	while (i < num_of_rays)
 	{
 		intersection = smallest(mlx, horizontal_intersection(mlx, ray_angle), vertical_intersection(mlx, ray_angle));
-		// printf("%f, %f\n", mlx->plyr.x, mlx->plyr.y);
-		// printf("lwosol : %f, %f\n",intersection.xstep, intersection.ystep);
-		line_draw(mlx, mlx->plyr.x, \
-							mlx->plyr.y, \
-							round(intersection.xstep), \
-							round(intersection.ystep), 0);
 		ray_angle = normalize_angle(ray_angle + mlx->plyr.fov / num_of_rays);
 		i++;
 	}

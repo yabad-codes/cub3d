@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 12:48:11 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/27 20:50:37 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/28 17:35:18 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ void	draw_tile(mlx_image_t *img, int px, int py, unsigned int color)
 		while (i < ((px * TILE) + TILE))
 		{
 			mlx_put_pixel(img, i, j, color);
-			if (!(i % TILE) || !(j % TILE))
-				mlx_put_pixel(img, i, j, 0x0);
 			i++;
 		}
 		j++;
@@ -92,9 +90,14 @@ void	render_map(t_mlx *mlx)
 		while (++i < mlx->map->rows)
 		{
 			if (mlx->map->grid[j][i] == '1')
-				draw_tile(mlx->img, i, j, 0xFFFFFFFF);
+				draw_tile(mlx->img, i, j, 0xFFFFFF99);
+			else if (mlx->map->grid[j][i] == '0' || mlx->map->grid[j][i] == 'N' || \
+					mlx->map->grid[j][i] == 'S' || \
+					mlx->map->grid[j][i] == 'E' || \
+					mlx->map->grid[j][i] == 'W')
+				draw_tile(mlx->img, i, j, 0x77777799);
 			else
-				draw_tile(mlx->img, i, j, 0x777777FF);
+				draw_tile(mlx->img, i, j, 0x00000000);
 		}
 	}
 }

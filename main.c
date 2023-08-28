@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:27 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/27 13:18:20 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/28 17:21:40 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_init_mlx(t_mlx *mlx)
 {
-	mlx->mlx = mlx_init(mlx->map->width, mlx->map->height, "(yabad && ael-maar)'s cub3D", false);
+	mlx->mlx = mlx_init(WIDTH, HEIGHT, "(yabad && ael-maar)'s cub3D", false);
 	if (!mlx->mlx)
 	{
 		// free_map(mlx->map);
@@ -28,6 +28,11 @@ void	ft_init_mlx(t_mlx *mlx)
 		mlx_terminate(mlx->mlx);
 		free(mlx);
 		exit(EXIT_FAILURE);
+	}
+	mlx->img_3d = mlx_new_image(mlx->mlx, WIDTH, HEIGHT);
+	if (!mlx->img_3d)
+	{
+		//free_kolchi
 	}
 }
 
@@ -54,6 +59,12 @@ int	main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	}
 	conductor(mlx);
+	for (int i = 0; i < HEIGHT; i++)
+	{
+		for (int j = 0; j < WIDTH; j++)
+			mlx_put_pixel(mlx->img_3d, j, i, 0x0000FFFF);
+	}
+	mlx_image_to_window(mlx->mlx, mlx->img_3d, 0, 0);
 	mlx_image_to_window(mlx->mlx, mlx->img, 0, 0);
 	mlx_key_hook(mlx->mlx, key_handler, mlx);
 	mlx_loop(mlx->mlx);

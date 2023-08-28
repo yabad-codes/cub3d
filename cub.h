@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:42 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/27 20:31:59 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/28 17:58:54 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@
 # include <stdio.h>
 # include "MLX42/include/MLX42/MLX42.h"
 
-# define TILE 60
+# define SCALE 0.8
+# define WIDTH 1980
+# define HEIGHT 1024
+# define TILE 15
 /*************************************************************/
 /*                         MAP_PARSE                         */
 /*************************************************************/
@@ -68,6 +71,7 @@ typedef struct s_mlx_data
 	t_map_info	*map;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
+	mlx_image_t	*img_3d;
 	t_player	plyr;
 }	t_mlx;
 

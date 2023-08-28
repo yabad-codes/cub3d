@@ -6,19 +6,34 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:07:40 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/27 20:54:34 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/28 17:53:29 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
+void	draw_player_sqr(t_mlx *mlx)
+{
+	int	i;
+	int	j;
+
+	j = mlx->plyr.y - 1;
+	while (++j < mlx->plyr.y + mlx->plyr.side)
+	{
+		i = mlx->plyr.x - 1;
+		while (++i < mlx->plyr.x + mlx->plyr.side)
+			mlx_put_pixel(mlx->img, i, j, 0xFF0000AA);
+	}
+}
+
 void	render_player(t_mlx *mlx)
 {
 	mlx_put_pixel(mlx->img, mlx->plyr.x, mlx->plyr.y, 0x0000FFFF);
-	line_draw(mlx, mlx->plyr.x, \
-					mlx->plyr.y, \
-					mlx->plyr.x + cos(mlx->plyr.r_angle) * 20, \
-					mlx->plyr.y + sin(mlx->plyr.r_angle) * 20, 0x0000FFFF);
+	draw_player_sqr(mlx);
+	line_draw(mlx, mlx->plyr.x + mlx->plyr.side / 2, \
+					mlx->plyr.y + mlx->plyr.side / 2, \
+					mlx->plyr.x + mlx->plyr.side / 2 + cos(mlx->plyr.r_angle) * 20, \
+					mlx->plyr.y + mlx->plyr.side / 2 + sin(mlx->plyr.r_angle) * 20, 0xFF0000AA);
 	raycaster(mlx);
 }
 
@@ -62,13 +77,12 @@ void	get_player_pos(t_mlx *mlx, float *x, float *y)
 	}
 	*y = i * TILE + TILE / 2;
 	*x = (int)(ft_strchr(mlx->map->grid[i], plyr_dir) - mlx->map->grid[i]) * TILE + TILE / 2;
-	printf("P(%f, %f)\n", *x / TILE, *y / TILE);
 }
 
 void	init_player(t_mlx *mlx)
 {
 	get_player_pos(mlx, &mlx->plyr.x, &mlx->plyr.y);
-	mlx->plyr.side = TILE / 4;
+	mlx->plyr.side = TILE / 2;
 	mlx->plyr.speed = 10;
 	mlx->plyr.fov = deg_to_radian(60);
 }
@@ -93,9 +107,9 @@ void	update_player(t_mlx *mlx, mlx_key_data_t keydata)
 		}
 	}
 	else if (keydata.key == MLX_KEY_RIGHT)
-		mlx->plyr.r_angle += 0.01;
+		mlx->plyr.r_angle += 0.05;
 	else
-		mlx->plyr.r_angle -= 0.01;
+		mlx->plyr.r_angle -= 0.05;
 	render_map(mlx);
 	render_player(mlx);
 }

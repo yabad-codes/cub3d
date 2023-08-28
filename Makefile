@@ -12,9 +12,9 @@ NAME = cub3D
 
 CC = cc
 
-CPPFLAGS = -Wall -Wextra -Werror
+CPPFLAGS = -Wall -Wextra -Werror 
 
-FRAMEWORKS = -framework Cocoa -framework OpenGL -framework IOKit
+FRAMEWORKS = -framework Cocoa -framework OpenGL -framework IOKit -fsanitize=address
 
 MLX = $(FRAMEWORKS) -Iinclude -lglfw -L"/Users/yabad/goinfre/homebrew/opt/glfw/lib"
 
