@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:28:34 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/28 23:53:19 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/29 13:09:06 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,48 +89,62 @@ t_cord	vertical_intersection(t_mlx *mlx, float ray_angle)
 	return (cord);
 }
 
-t_cord	smallest(t_mlx *mlx, t_cord c1, t_cord c2)
+t_cord smallest(t_mlx *mlx, t_cord c1, t_cord c2)
 {
-	float	d1;
-	float	d2;
-	
-	d1 = sqrt((c1.xstep - mlx->plyr.x) * (c1.xstep - mlx->plyr.x) + (c1.ystep - mlx->plyr.y) * (c1.ystep - mlx->plyr.y));
-	d2 = sqrt((c2.xstep - mlx->plyr.x) * (c2.xstep - mlx->plyr.x) + (c2.ystep - mlx->plyr.y) * (c2.ystep - mlx->plyr.y));
-	if (d1 < d2)
-	{
-		c1.distance = d1;
-		return (c1);
-	}
-	c2.distance = d2;
-	return (c2);
+    float d1;
+    float d2;
+
+    // Calculate the Euclidean distances
+    d1 = sqrt((c1.xstep - mlx->plyr.x) * (c1.xstep - mlx->plyr.x) + (c1.ystep - mlx->plyr.y) * (c1.ystep - mlx->plyr.y));
+    d2 = sqrt((c2.xstep - mlx->plyr.x) * (c2.xstep - mlx->plyr.x) + (c2.ystep - mlx->plyr.y) * (c2.ystep - mlx->plyr.y));
+
+    // Calculate the "horizon" line based on the player's view
+    float horizon = mlx->map->height / 2; // Adjust this based on your map's dimensions and player's height
+
+    // Calculate the corrected distances
+    float corrected_d1 = d1 * cos(atan((horizon - mlx->plyr.y) / (c1.xstep - mlx->plyr.x)));
+    float corrected_d2 = d2 * cos(atan((horizon - mlx->plyr.y) / (c2.xstep - mlx->plyr.x)));
+
+    if (corrected_d1 < corrected_d2)
+    {
+        c1.distance = corrected_d1;
+        return c1;
+    }
+
+    c2.distance = corrected_d2;
+    return c2;
 }
 
-void	draw_wall_height(t_mlx *mlx, int id, float wall_height, int nor)
+
+void	draw_wall_height(t_mlx *mlx, int id, float wall_height)
 {
-	int	i;
 	int	j;
 	int	offsety;
-	float	maximum_height;
-	float	thickness;
-
 
 	(void)mlx;
-	thickness = WIDTH / nor;
-	maximum_height = HEIGHT * 0.5;
-	if (wall_height > maximum_height)
-		wall_height = maximum_height;
+	if (wall_height > HEIGHT)
+		wall_height = HEIGHT;
 	offsety = (HEIGHT - wall_height) / 2;
-	j = offsety;
-	while (j < offsety + wall_height)
+	j = 0;
+	while (j < HEIGHT)
 	{
-		i = id * thickness;
-		while (i < id * thickness + thickness)
-		{
-			mlx_put_pixel(mlx->img_3d, i, j, 0xFF0000AA);
-			i++;
-		}
+		if (j > offsety && j < offsety + wall_height)
+			mlx_put_pixel(mlx->img_3d, id, j, 0xFF0000AA);
+		else
+			mlx_put_pixel(mlx->img_3d, id, j, 0x0);
 		j++;
 	}
+	// j = offsety;
+	// while (j < offsety + wall_height)
+	// {
+	// 	i = id * thickness;
+	// 	while (i < id * thickness + thickness)
+	// 	{
+	// 		mlx_put_pixel(mlx->img_3d, i, j, 0xFF0000AA);
+	// 		i++;
+	// 	}
+	// 	j++;
+	// }
 }
 
 void raycaster(t_mlx *mlx)
@@ -143,12 +157,12 @@ void raycaster(t_mlx *mlx)
 
 	ray_angle = normalize_angle(mlx->plyr.r_angle - (mlx->plyr.fov / 2));
 	id = 0;
-	num_of_rays = mlx->map->width;
+	num_of_rays = WIDTH;
 	while (id < num_of_rays)
 	{
 		intersection = smallest(mlx, horizontal_intersection(mlx, ray_angle), vertical_intersection(mlx, ray_angle));
-		wall_height = (TILE / intersection.distance) * (WIDTH / 2) / tan(mlx->plyr.fov / 2);
-		draw_wall_height(mlx, id, wall_height, num_of_rays);
+		wall_height = TILE / (intersection.distance) * (WIDTH / 2) / tan(mlx->plyr.fov / 2);
+		draw_wall_height(mlx, id, wall_height);
 		ray_angle = normalize_angle(ray_angle + mlx->plyr.fov / num_of_rays);
 		id++;
 	}
