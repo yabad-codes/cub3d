@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 12:48:11 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/28 17:35:18 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/28 23:43:30 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	**get_grid(void)
 	grid[8] = ft_strdup("11000000110101011100100010001    ");
 	grid[9] = ft_strdup("10000000000000001100000010001    ");
 	grid[10] = ft_strdup("10000000000000001101010010001    ");
-	grid[11] = ft_strdup("11000001110101011111011110S0111  ");
+	grid[11] = ft_strdup("11000001110101011111011110N0111  ");
 	grid[12] = ft_strdup("11110111 1110101 101111010001    ");
 	grid[13] = ft_strdup("11111111 1111111 111111111111    ");
 	grid[14] = NULL;
@@ -50,7 +50,7 @@ t_map_info	*get_map_info(char *path)
 	map->cols = 14;
 	map->width = map->rows * TILE;
 	map->height = map->cols * TILE;
-	map->direction = SO;
+	map->direction = NO;
 	map->no_text = NULL;
 	map->so_text = NULL;
 	map->we_text = NULL;
@@ -102,17 +102,10 @@ void	render_map(t_mlx *mlx)
 	}
 }
 
-#define EPSILON 0.0001
-
 bool	has_wall(t_mlx *mlx, float x, float y)
 {
 	if (x < 0 || x > mlx->map->width || y < 0 || y > mlx->map->height)
 		return (true);
-	// if (x != 0 && y != 0 && !((int)x % TILE) && !((int)y % TILE))
-	// {
-	// 	x += EPSILON;
-	// 	y += EPSILON;
-	// }
 	x = floor(x / TILE);
 	y = floor(y / TILE);
 	if (x < 0 || x >= mlx->map->rows || y < 0 || y >= mlx->map->cols)

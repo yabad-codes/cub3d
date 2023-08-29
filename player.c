@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:07:40 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/28 17:53:29 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/28 23:55:44 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ char	get_player_direction(t_mlx *mlx)
 {
 	if (mlx->map->direction == NO)
 	{
-		mlx->plyr.r_angle = deg_to_radian(90);
+		mlx->plyr.r_angle = deg_to_radian(270);
 		return ('N');
 	}
 	if (mlx->map->direction == SO)
 	{
-		mlx->plyr.r_angle = deg_to_radian(270);
+		mlx->plyr.r_angle = deg_to_radian(90);
 		return ('S');
 	}
 	if (mlx->map->direction == WE)
@@ -83,7 +83,7 @@ void	init_player(t_mlx *mlx)
 {
 	get_player_pos(mlx, &mlx->plyr.x, &mlx->plyr.y);
 	mlx->plyr.side = TILE / 2;
-	mlx->plyr.speed = 10;
+	mlx->plyr.speed = 4;
 	mlx->plyr.fov = deg_to_radian(60);
 }
 
@@ -107,9 +107,9 @@ void	update_player(t_mlx *mlx, mlx_key_data_t keydata)
 		}
 	}
 	else if (keydata.key == MLX_KEY_RIGHT)
-		mlx->plyr.r_angle += 0.05;
+		mlx->plyr.r_angle += 0.15;
 	else
-		mlx->plyr.r_angle -= 0.05;
+		mlx->plyr.r_angle -= 0.15;
 	render_map(mlx);
 	render_player(mlx);
 }

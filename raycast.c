@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:28:34 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/28 17:36:09 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/28 23:53:19 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ typedef struct s_cord
 {
 	float	xstep;
 	float	ystep;
+	float	distance;
 }	t_cord;
 
 float	rad_to_deg(float rad)
@@ -96,24 +97,59 @@ t_cord	smallest(t_mlx *mlx, t_cord c1, t_cord c2)
 	d1 = sqrt((c1.xstep - mlx->plyr.x) * (c1.xstep - mlx->plyr.x) + (c1.ystep - mlx->plyr.y) * (c1.ystep - mlx->plyr.y));
 	d2 = sqrt((c2.xstep - mlx->plyr.x) * (c2.xstep - mlx->plyr.x) + (c2.ystep - mlx->plyr.y) * (c2.ystep - mlx->plyr.y));
 	if (d1 < d2)
+	{
+		c1.distance = d1;
 		return (c1);
+	}
+	c2.distance = d2;
 	return (c2);
+}
+
+void	draw_wall_height(t_mlx *mlx, int id, float wall_height, int nor)
+{
+	int	i;
+	int	j;
+	int	offsety;
+	float	maximum_height;
+	float	thickness;
+
+
+	(void)mlx;
+	thickness = WIDTH / nor;
+	maximum_height = HEIGHT * 0.5;
+	if (wall_height > maximum_height)
+		wall_height = maximum_height;
+	offsety = (HEIGHT - wall_height) / 2;
+	j = offsety;
+	while (j < offsety + wall_height)
+	{
+		i = id * thickness;
+		while (i < id * thickness + thickness)
+		{
+			mlx_put_pixel(mlx->img_3d, i, j, 0xFF0000AA);
+			i++;
+		}
+		j++;
+	}
 }
 
 void raycaster(t_mlx *mlx)
 {
 	float	ray_angle;
-	int		i;
+	int		id;
 	int		num_of_rays;
+	float	wall_height;
 	t_cord	intersection;
 
 	ray_angle = normalize_angle(mlx->plyr.r_angle - (mlx->plyr.fov / 2));
-	i = 0;
+	id = 0;
 	num_of_rays = mlx->map->width;
-	while (i < num_of_rays)
+	while (id < num_of_rays)
 	{
 		intersection = smallest(mlx, horizontal_intersection(mlx, ray_angle), vertical_intersection(mlx, ray_angle));
+		wall_height = (TILE / intersection.distance) * (WIDTH / 2) / tan(mlx->plyr.fov / 2);
+		draw_wall_height(mlx, id, wall_height, num_of_rays);
 		ray_angle = normalize_angle(ray_angle + mlx->plyr.fov / num_of_rays);
-		i++;
+		id++;
 	}
 }
