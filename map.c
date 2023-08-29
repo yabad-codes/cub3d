@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 12:48:11 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/28 23:43:30 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/29 19:22:42 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ t_map_info	*get_map_info(char *path)
 	map->so_text = NULL;
 	map->we_text = NULL;
 	map->ea_text = NULL;
-	map->floor_clr = 0;
-	map->ceil_clr = 0;
+	map->floor_clr = 0x183D3D55;
+	map->ceil_clr = 0x352F4455;
 	return (map);
 }
 
