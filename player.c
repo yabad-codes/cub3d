@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:07:40 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/28 23:55:44 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/29 19:09:49 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,24 +87,37 @@ void	init_player(t_mlx *mlx)
 	mlx->plyr.fov = deg_to_radian(60);
 }
 
-void	update_player(t_mlx *mlx, mlx_key_data_t keydata)
+void	change_player_coor(t_mlx *mlx, int sign, int dir)
 {
 	float	new_x;
 	float	new_y;
+
+	new_x = mlx->plyr.x + sign * mlx->plyr.speed * cos(mlx->plyr.r_angle * dir);
+	new_y = mlx->plyr.y + sign * mlx->plyr.speed * sin(mlx->plyr.r_angle * dir);
+	if (!has_wall(mlx, new_x, new_y))
+	{
+		mlx->plyr.x = new_x;
+		mlx->plyr.y = new_y;
+	}
+}
+
+void	update_player(t_mlx *mlx, mlx_key_data_t keydata)
+{
 	int		sign;
+	int		dir;
 
 	sign = 1;
-	if (keydata.key == MLX_KEY_UP || keydata.key == MLX_KEY_DOWN)
+	dir = 1;
+	if (keydata.key == MLX_KEY_W || \
+				keydata.key == MLX_KEY_S || \
+				keydata.key == MLX_KEY_A || \
+				keydata.key == MLX_KEY_D)
 	{
-		if (keydata.key == MLX_KEY_DOWN)
+		if (keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_A)
 			sign = -1;
-		new_x = mlx->plyr.x + sign * mlx->plyr.speed * cos(mlx->plyr.r_angle);
-		new_y = mlx->plyr.y + sign * mlx->plyr.speed * sin(mlx->plyr.r_angle);
-		if (!has_wall(mlx, new_x, new_y))
-		{
-			mlx->plyr.x = new_x;
-			mlx->plyr.y = new_y;
-		}
+		if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_D)
+			dir = 0;
+		change_player_coor(mlx, sign, dir);
 	}
 	else if (keydata.key == MLX_KEY_RIGHT)
 		mlx->plyr.r_angle += 0.15;
