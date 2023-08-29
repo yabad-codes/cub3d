@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:42 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/24 19:47:36 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:13:10 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void		error_map_cmps(char *message, char **component, \
 					char *component_checks[], t_map_info *map_scene);
 
 void		error_file(char *file, t_map_info *map_scene);
+
+void		error_message(char *message);
 
 void		error_map_content(char *message);
 

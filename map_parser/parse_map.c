@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:45:45 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/29 18:47:09 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:19:18 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,10 @@ t_map_info	*parse_map(char *map_file)
 {
 	t_map_info	*map_scene;
 	char		*component_checks[6];
+	char		*valid_map_file;
 
-	if (!ft_strnstr(map_file, ".cub", ft_strlen(map_file)))
+	valid_map_file = ft_strnstr(map_file, ".cub", ft_strlen(map_file));
+	if (!valid_map_file || ft_strlen(valid_map_file) != 4)
 		error_message("Invalid map file");
 	ft_memset(component_checks, 0, sizeof(component_checks));
 	map_scene = malloc(sizeof(t_map_info));
