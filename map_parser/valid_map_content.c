@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 15:39:14 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/23 13:04:04 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/08/29 18:46:27 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,14 +105,14 @@ bool	valid_map_content(char **grid)
 	if (!grid)
 		return (false);
 	if (invalid_map_components(grid))
-		return (error_map_content("Invalid components in the map content") \
+		return (error_message("Invalid components in the map content") \
 		, false);
 	else if (no_player_exist(grid))
-		return (error_map_content("Player not exist") \
+		return (error_message("Player not exist") \
 		, false);
 	else if (duplicate_players(grid))
-		return (error_map_content("Duplicate Players"), false);
+		return (error_message("Duplicate Players"), false);
 	else if (not_surrounded_by_walls(grid))
-		return (error_map_content("The map is not surrounded by walls"), false);
+		return (error_message("The map is not surrounded by walls"), false);
 	return (true);
 }
