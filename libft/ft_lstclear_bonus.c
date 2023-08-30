@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 12:08:04 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/29 20:28:28 by ael-maar         ###   ########.fr       */
+/*   Created: 2022/10/05 11:55:54 by ael-maar          #+#    #+#             */
+/*   Updated: 2022/10/09 11:11:28 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "libft.h"
 
-void	free_2d_arr(char **arr)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	int	i;
+	t_list	*temp_node;
 
-	i = 0;
-	while (arr && arr[i])
-		free(arr[i++]);
-	free(arr);
-}
-
-void	free_map_scene(t_map_info *map_scene)
-{
-	free_2d_arr(map_scene->grid);
-	free(map_scene->no_text);
-	free(map_scene->so_text);
-	free(map_scene->we_text);
-	free(map_scene->ea_text);
-	free(map_scene);
+	if (lst && del)
+	{
+		while (*lst)
+		{
+			temp_node = *lst;
+			*lst = (*lst)->next;
+			ft_lstdelone(temp_node, del);
+		}
+		*lst = 0;
+	}
 }

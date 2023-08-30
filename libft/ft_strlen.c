@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 12:08:04 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/29 20:28:28 by ael-maar         ###   ########.fr       */
+/*   Created: 2022/09/29 09:49:46 by ael-maar          #+#    #+#             */
+/*   Updated: 2022/09/29 11:38:06 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include <stdlib.h>
 
-void	free_2d_arr(char **arr)
+size_t	ft_strlen(const char *str)
 {
-	int	i;
+	size_t	len;
 
-	i = 0;
-	while (arr && arr[i])
-		free(arr[i++]);
-	free(arr);
-}
-
-void	free_map_scene(t_map_info *map_scene)
-{
-	free_2d_arr(map_scene->grid);
-	free(map_scene->no_text);
-	free(map_scene->so_text);
-	free(map_scene->we_text);
-	free(map_scene->ea_text);
-	free(map_scene);
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
 }

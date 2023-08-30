@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 12:08:04 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/29 20:28:28 by ael-maar         ###   ########.fr       */
+/*   Created: 2022/10/01 20:02:12 by ael-maar          #+#    #+#             */
+/*   Updated: 2022/10/08 15:45:21 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include <stdlib.h>
+#include "libft.h"
 
-void	free_2d_arr(char **arr)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	i;
+	char	*new_str;
+	size_t	i;
 
-	i = 0;
-	while (arr && arr[i])
-		free(arr[i++]);
-	free(arr);
-}
-
-void	free_map_scene(t_map_info *map_scene)
-{
-	free_2d_arr(map_scene->grid);
-	free(map_scene->no_text);
-	free(map_scene->so_text);
-	free(map_scene->we_text);
-	free(map_scene->ea_text);
-	free(map_scene);
+	if (!s1)
+		return (0);
+	new_str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (new_str)
+	{
+		i = 0;
+		while (*s1)
+			new_str[i++] = *(s1++);
+		while (*s2)
+			new_str[i++] = *(s2++);
+		new_str[i] = '\0';
+	}
+	return (new_str);
 }

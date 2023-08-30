@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 12:08:04 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/29 20:28:28 by ael-maar         ###   ########.fr       */
+/*   Created: 2022/09/30 13:14:46 by ael-maar          #+#    #+#             */
+/*   Updated: 2022/10/01 16:28:43 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include <stdlib.h>
 
-void	free_2d_arr(char **arr)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int	i;
+	const unsigned char	*s_cast;
+	size_t				i;
 
 	i = 0;
-	while (arr && arr[i])
-		free(arr[i++]);
-	free(arr);
-}
-
-void	free_map_scene(t_map_info *map_scene)
-{
-	free_2d_arr(map_scene->grid);
-	free(map_scene->no_text);
-	free(map_scene->so_text);
-	free(map_scene->we_text);
-	free(map_scene->ea_text);
-	free(map_scene);
+	s_cast = s;
+	while (i < n)
+	{
+		if (s_cast[i] == (unsigned char)c)
+			return ((void *)&s_cast[i]);
+		i++;
+	}
+	return (0);
 }

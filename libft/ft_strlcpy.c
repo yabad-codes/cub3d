@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 12:08:04 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/29 20:28:28 by ael-maar         ###   ########.fr       */
+/*   Created: 2022/09/29 18:15:29 by ael-maar          #+#    #+#             */
+/*   Updated: 2022/09/29 18:43:49 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include <stdlib.h>
+#include "libft.h"
 
-void	free_2d_arr(char **arr)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	int	i;
+	size_t	i;
+	size_t	src_len;
 
-	i = 0;
-	while (arr && arr[i])
-		free(arr[i++]);
-	free(arr);
-}
-
-void	free_map_scene(t_map_info *map_scene)
-{
-	free_2d_arr(map_scene->grid);
-	free(map_scene->no_text);
-	free(map_scene->so_text);
-	free(map_scene->we_text);
-	free(map_scene->ea_text);
-	free(map_scene);
+	src_len = ft_strlen(src);
+	if (dstsize > 0)
+	{
+		i = 0;
+		while (src[i] && i < (dstsize - 1))
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
+	}
+	return (src_len);
 }

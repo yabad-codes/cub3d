@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 12:08:04 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/29 20:28:28 by ael-maar         ###   ########.fr       */
+/*   Created: 2022/10/01 17:04:21 by ael-maar          #+#    #+#             */
+/*   Updated: 2022/10/08 18:47:21 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include <stdlib.h>
+#include "libft.h"
 
-void	free_2d_arr(char **arr)
+char	*ft_strdup(const char *s1)
 {
-	int	i;
+	char	*s1_alloc;
+	size_t	len_size;
+	size_t	i;
 
+	len_size = ft_strlen(s1);
+	s1_alloc = malloc((len_size + 1) * sizeof(char));
+	if (!s1_alloc)
+		return (0);
 	i = 0;
-	while (arr && arr[i])
-		free(arr[i++]);
-	free(arr);
-}
-
-void	free_map_scene(t_map_info *map_scene)
-{
-	free_2d_arr(map_scene->grid);
-	free(map_scene->no_text);
-	free(map_scene->so_text);
-	free(map_scene->we_text);
-	free(map_scene->ea_text);
-	free(map_scene);
+	while (i < len_size)
+	{
+		s1_alloc[i] = s1[i];
+		i++;
+	}
+	s1_alloc[i] = '\0';
+	return (s1_alloc);
 }
