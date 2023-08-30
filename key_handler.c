@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:19:23 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/29 18:46:32 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/30 16:54:40 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	key_handler(mlx_key_data_t keydata, void *param)
 
 	mlx = (t_mlx *)param;
 	if (keydata.key == MLX_KEY_ESCAPE)
-		exit(EXIT_SUCCESS);
+		safe_exit(mlx);
 	if (keydata.key == MLX_KEY_RIGHT || keydata.key == MLX_KEY_LEFT \
 			|| keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_A \
 			|| keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_D)

@@ -6,53 +6,56 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:06:04 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/27 20:31:48 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/30 16:17:48 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-typedef struct s_dda
-{
-	float dx;
-	float dy;
-	int steps;
-} t_dda;
-
-float ft_max(float a, float b)
+float	ft_max(float a, float b)
 {
 	if (a > b)
 		return (a);
 	return (b);
 }
 
-float deg_to_radian(float degree)
+float	deg_to_radian(float degree)
 {
 	return (degree * M_PI / 180);
 }
- 
-// DDA Function for line generation
-void line_draw(t_mlx *mlx, int X0, int Y0, int X1, int Y1, unsigned int color)
+
+typedef struct s_dda
 {
-    // calculate dx & dy
-    int dx = X1 - X0;
-    int dy = Y1 - Y0;
- 
-    // calculate steps required for generating pixels
-    int steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy);
- 
-    // calculate increment in x & y for each steps
-    float Xinc = dx / (float)steps;
-    float Yinc = dy / (float)steps;
- 
-    // Put pixel for each step
-    float X = X0;
-    float Y = Y0;
-    for (int i = 0; i <= steps; i++) {
-        mlx_put_pixel(mlx->img, X, Y, color); // put pixel at (X,Y)
-        X += Xinc; // increment in x at each step
-        Y += Yinc; // increment in y at each step
-    }
+	int		dx;
+	int		dy;
+	int		steps;
+	float	xinc;
+	float	yinc;
+}	t_dda;
+
+void	line_draw(t_mlx *mlx, t_cord p0, t_cord p1, unsigned int color)
+{
+	t_dda	v;
+	t_cord	p;
+	int		i;
+
+	v.dx = p1.xstep - p0.xstep;
+	v.dy = p1.ystep - p0.ystep;
+	v.steps = abs(v.dy);
+	if (abs(v.dx) > abs(v.dy))
+		v.steps = abs(v.dx);
+	v.xinc = v.dx / (float)v.steps;
+	v.yinc = v.dy / (float)v.steps;
+	p.xstep = p0.xstep;
+	p.ystep = p0.ystep;
+	i = 0;
+	while (i <= v.steps)
+	{
+		mlx_put_pixel(mlx->img, p.xstep, p.ystep, color);
+		p.xstep += v.xinc;
+		p.ystep += v.yinc;
+		i++;
+	}
 }
 
 float	normalize_angle(float angle)

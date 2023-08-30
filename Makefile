@@ -2,8 +2,10 @@ SRC = 	main.c \
 		map.c \
 		math.c \
 		player.c \
+		player_utils.c \
 		key_handler.c \
 		raycast.c \
+		raycast_utils.c \
 		free.c \
 
 OBJ = ${SRC:.c=.o}
@@ -14,9 +16,9 @@ CC = cc
 
 CPPFLAGS = -Wall -Wextra -Werror 
 
-FRAMEWORKS = -framework Cocoa -framework OpenGL -framework IOKit -fsanitize=address
+GLFW_LIB = $(shell brew --prefix glfw)
 
-MLX = $(FRAMEWORKS) -Iinclude -lglfw -L"/Users/yabad/goinfre/homebrew/opt/glfw/lib"
+MLX = -Iinclude -lglfw -L"$(GLFW_LIB)/lib"
 
 MLXLIB = MLX42/build/libmlx42.a
 

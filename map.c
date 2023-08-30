@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 12:48:11 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/29 19:22:42 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/30 16:01:04 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	render_map(t_mlx *mlx)
 {
 	int	i;
 	int	j;
-	
+
 	j = -1;
 	while (++j < mlx->map->cols)
 	{
@@ -91,7 +91,8 @@ void	render_map(t_mlx *mlx)
 		{
 			if (mlx->map->grid[j][i] == '1')
 				draw_tile(mlx->img, i, j, 0xFFFFFF99);
-			else if (mlx->map->grid[j][i] == '0' || mlx->map->grid[j][i] == 'N' || \
+			else if (mlx->map->grid[j][i] == '0' || \
+					mlx->map->grid[j][i] == 'N' || \
 					mlx->map->grid[j][i] == 'S' || \
 					mlx->map->grid[j][i] == 'E' || \
 					mlx->map->grid[j][i] == 'W')
