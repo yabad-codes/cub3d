@@ -1,4 +1,12 @@
-SRC = main.c
+SRC = 	main.c \
+		map.c \
+		math.c \
+		player.c \
+		player_utils.c \
+		key_handler.c \
+		raycast.c \
+		raycast_utils.c \
+		free.c \
 
 OBJ = ${SRC:.c=.o}
 
@@ -6,24 +14,34 @@ NAME = cub3D
 
 CC = cc
 
-CPPFLAGS = -Wall -Wextra -Werror
+CPPFLAGS = -Wall -Wextra -Werror 
 
-FRAMEWORKS = -framework Cocoa -framework OpenGL -framework IOKit
+GLFW_LIB = $(shell brew --prefix glfw)
 
-MLX = $(FRAMEWORKS) -Iinclude -lglfw -L"/Users/yabad/goinfre/homebrew/opt/glfw/lib"
+MLX = -Iinclude -lglfw -L"$(GLFW_LIB)/lib"
 
 MLXLIB = MLX42/build/libmlx42.a
 
-${NAME}: ${OBJ}
-	${CC} ${OBJ} ${MLXLIB} ${CFLAGS} ${MLX} -o $@ && ./cub3D
+LIBFT_DIR = ./libft
 
-all: ${NAME}
+LIBFT_LIB = $(LIBFT_DIR)/libft.a
+
+all:$(LIBFT_LIB) ${NAME}
+
+${NAME}: ${OBJ}
+	${CC} ${OBJ} ${MLXLIB} ${CFLAGS} ${MLX} $(LIBFT_LIB) -o $@ && ./cub3D
+
+
+$(LIBFT_LIB):
+	$(MAKE) -C $(LIBFT_DIR)
 
 clean:
 	rm -f ${OBJ}
+	$(MAKE) clean -C $(LIBFT_DIR)
 
 fclean: clean
 	rm -f ${NAME}
+	$(MAKE) fclean -C $(LIBFT_DIR)
 
 re: fclean all
 

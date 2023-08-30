@@ -1,0 +1,48 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/30 16:23:29 by yabad             #+#    #+#             */
+/*   Updated: 2023/08/30 16:24:35 by yabad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub.h"
+
+char	get_player_direction(t_mlx *mlx)
+{
+	if (mlx->map->direction == NO)
+	{
+		mlx->plyr.r_angle = deg_to_radian(270);
+		return ('N');
+	}
+	if (mlx->map->direction == SO)
+	{
+		mlx->plyr.r_angle = deg_to_radian(90);
+		return ('S');
+	}
+	if (mlx->map->direction == WE)
+	{
+		mlx->plyr.r_angle = deg_to_radian(0);
+		return ('W');
+	}
+	mlx->plyr.r_angle = deg_to_radian(180);
+	return ('E');
+}
+
+void	draw_player_sqr(t_mlx *mlx)
+{
+	int	i;
+	int	j;
+
+	j = mlx->plyr.y - 1;
+	while (++j < mlx->plyr.y + mlx->plyr.side)
+	{
+		i = mlx->plyr.x - 1;
+		while (++i < mlx->plyr.x + mlx->plyr.side)
+			mlx_put_pixel(mlx->img, i, j, 0xFF0000AA);
+	}
+}
