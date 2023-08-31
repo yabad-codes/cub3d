@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:07:40 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/30 17:21:51 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/30 21:45:59 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,10 @@ void	change_player_coor(t_mlx *mlx, int sign, int key)
 void	update_player(t_mlx *mlx, mlx_key_data_t keydata)
 {
 	int		sign;
+	float	spin_speed;
 
 	sign = 1;
+	spin_speed = 0.1;
 	if (keydata.key == MLX_KEY_W || \
 				keydata.key == MLX_KEY_S || \
 				keydata.key == MLX_KEY_A || \
@@ -88,9 +90,9 @@ void	update_player(t_mlx *mlx, mlx_key_data_t keydata)
 		change_player_coor(mlx, sign, keydata.key);
 	}
 	else if (keydata.key == MLX_KEY_RIGHT)
-		mlx->plyr.r_angle += 0.15;
+		mlx->plyr.r_angle += spin_speed;
 	else
-		mlx->plyr.r_angle -= 0.15;
+		mlx->plyr.r_angle -= spin_speed;
 	render_map(mlx);
 	render_player(mlx);
 }
