@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   valid_map_content.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 15:39:14 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/29 18:46:27 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/08/30 18:58:04 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "../cub.h"
 
 bool	invalid_map_components(char **grid)
 {

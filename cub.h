@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:42 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/29 19:13:10 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/08/30 18:58:59 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void		error_file(char *file, t_map_info *map_scene);
 
 void		error_message(char *message);
 
-void		error_map_content(char *message);
+// void		error_map_content(char *message);
 
 void		free_2d_arr(char **arr);
 
@@ -85,7 +85,7 @@ int			comma_len(char *color_cmp);
 
 int			map_len(char **arr);
 
-bool		is_adjacent_to_empty_space(char **grid, int x, int y);
+bool		is_adjacent_to_empty_space(char **grid, size_t x, size_t y);
 
 bool		not_valid_map_components(char cmp);
 

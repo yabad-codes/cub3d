@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 12:16:34 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/23 16:23:20 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/08/30 18:51:53 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ bool	not_valid_map_components(char cmp)
 			&& cmp != 'W' && cmp != 'E' && cmp != 'S' && cmp != ' '));
 }
 
-bool	is_adjacent_to_empty_space(char **grid, int x, int y)
+bool	is_adjacent_to_empty_space(char **grid, size_t x, size_t y)
 {
 	if (y == 0 || x == 0 || \
 		!grid[y + 1] || \
