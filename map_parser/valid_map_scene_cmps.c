@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_map_scene_cmps.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:48:32 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/23 16:38:57 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/08/31 15:32:48 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ bool	is_color_unit_valid(char *color_unit)
 
 u_int32_t	rgb_units_to_dec(int r, int g, int b)
 {
-	return ((r << 24) | (g << 16) | (b << 8) | 0XFF);
+	return ((r << 24) | (g << 16) | (b << 8) | 0X55);
 }
 
 bool	is_valid_rgb_color(char *color_cmp, u_int32_t *color)
