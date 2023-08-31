@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:27 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/30 16:58:45 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/31 16:55:24 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,12 @@ int	main(int ac, char **av)
 {
 	t_mlx	*mlx;
 
-	(void)ac, (void)av;
+	if (ac != 2)
+		error_message("You have to specify one argument.");
 	mlx = (t_mlx *)malloc(sizeof(t_mlx));
 	if (!mlx)
 		exit(EXIT_FAILURE);
-	mlx->map = get_map_info(av[1]);
+	mlx->map = parse_map(av[1]);
 	conductor(mlx);
 	mlx_key_hook(mlx->mlx, key_handler, mlx);
 	mlx_close_hook(mlx->mlx, cross_handler, mlx);

@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:07:40 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/30 21:45:59 by yabad            ###   ########.fr       */
+/*   Updated: 2023/08/31 16:50:07 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	render_player(t_mlx *mlx)
 
 	init.xstep = mlx->plyr.x + mlx->plyr.side / 2;
 	init.ystep = mlx->plyr.y + mlx->plyr.side / 2;
-	dst.xstep = mlx->plyr.x + mlx->plyr.side / 2 + cos(mlx->plyr.r_angle) * 20;
-	dst.ystep = mlx->plyr.y + mlx->plyr.side / 2 + sin(mlx->plyr.r_angle) * 20;
+	dst.xstep = mlx->plyr.x + mlx->plyr.side / 2 + cos(mlx->plyr.r_angle) * 10;
+	dst.ystep = mlx->plyr.y + mlx->plyr.side / 2 + sin(mlx->plyr.r_angle) * 10;
 	draw_player_sqr(mlx);
 	line_draw(mlx, init, dst, 0xFF0000AA);
 	raycaster(mlx);
