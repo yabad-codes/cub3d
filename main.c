@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:27 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/31 16:55:24 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/01 10:09:15 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,23 @@
 
 void	ft_init_mlx(t_mlx *mlx)
 {
+	mlx->width = mlx->map->rows * TILE_BOX;
+	mlx->height = mlx->map->cols * TILE_BOX;
+	mlx->mlx = NULL;
 	mlx->img = NULL;
 	mlx->img_3d = NULL;
-	mlx->mlx = mlx_init(WIDTH, HEIGHT, "(yabad && ael-maar)'s cub3D", false);
+	if (mlx->width > MAX_WIDTH || mlx->height > MAX_HEIGHT)
+	{
+		error_message("Map is too big.");
+		safe_exit(mlx);
+	}
+	mlx->mlx = mlx_init(mlx->width, mlx->height, "(yabad && ael-maar)'s cub3D", false);
 	if (!mlx->mlx)
 		safe_exit(mlx);
 	mlx->img = mlx_new_image(mlx->mlx, mlx->map->width, mlx->map->height);
 	if (!mlx->img)
 		safe_exit(mlx);
-	mlx->img_3d = mlx_new_image(mlx->mlx, WIDTH, HEIGHT);
+	mlx->img_3d = mlx_new_image(mlx->mlx, mlx->width, mlx->height);
 	if (!mlx->img_3d)
 		safe_exit(mlx);
 }

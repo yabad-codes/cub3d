@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:42 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/30 18:58:59 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/01 10:03:10 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@
 # include "MLX42/include/MLX42/MLX42.h"
 # include "map_parser/get_next_line/get_next_line.h"
 
-# define WIDTH 1980
-# define HEIGHT 1024
+# define MAX_WIDTH 2560
+# define MAX_HEIGHT 1440
+# define TILE_BOX 64
 # define TILE 15
 /*************************************************************/
 /*                         MAP_PARSE                         */
@@ -116,6 +117,8 @@ typedef struct s_mlx_data
 	mlx_image_t	*img;
 	mlx_image_t	*img_3d;
 	t_player	plyr;
+	int			width;
+	int			height;
 }	t_mlx;
 
 typedef struct s_cord

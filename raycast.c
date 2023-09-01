@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:28:34 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/30 16:27:35 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/01 10:05:02 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	draw_wall_height(t_mlx *mlx, int id, float wall_height)
 	int	j;
 	int	offsety;
 
-	offsety = (HEIGHT - wall_height) / 2;
+	offsety = (mlx->height - wall_height) / 2;
 	j = 0;
-	while (j < HEIGHT)
+	while (j < mlx->height)
 	{
 		if (j > offsety && j < offsety + wall_height)
 			mlx_put_pixel(mlx->img_3d, id, j, 0xFF000055);
@@ -65,14 +65,14 @@ void	raycaster(t_mlx *mlx)
 
 	ray_angle = normalize_angle(mlx->plyr.r_angle - (mlx->plyr.fov / 2));
 	id = 0;
-	num_of_rays = WIDTH;
+	num_of_rays = mlx->width;
 	while (id < num_of_rays)
 	{
 		intersection = smallest(mlx, \
 			horizontal_intersection(mlx, ray_angle), \
 			vertical_intersection(mlx, ray_angle));
 		wall_height = (TILE / get_distance(mlx, ray_angle, intersection)) * \
-						(WIDTH / 2) / tan(mlx->plyr.fov / 2);
+						(mlx->width / 2) / tan(mlx->plyr.fov / 2);
 		draw_wall_height(mlx, id, wall_height);
 		ray_angle = normalize_angle(ray_angle + mlx->plyr.fov / num_of_rays);
 		id++;
