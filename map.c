@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 12:48:11 by yabad             #+#    #+#             */
-/*   Updated: 2023/09/06 09:43:03 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/06 12:18:33 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	render_map(t_mlx *mlx)
 
 bool	wall_coalition(t_mlx *mlx, float x, float y)
 {
+	if (x < 0 || x > mlx->map->width || y < 0 || y > mlx->map->height)
+		return (true);
 	if (mlx->map->grid[(int)(mlx->plyr.y / TILE)][(int)(x / TILE)] == '1')
 		return (true);
 	if (mlx->map->grid[(int)(y / TILE)][(int)(mlx->plyr.x / TILE)] == '1')
