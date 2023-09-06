@@ -12,6 +12,13 @@
 
 #include "cub.h"
 
+void	load_textures(t_mlx *mlx)
+{
+	mlx->no_text = mlx_load_png(mlx->map->no_text);
+	if (!mlx->no_text)
+		safe_exit(mlx);
+}
+
 void	ft_init_mlx(t_mlx *mlx)
 {
 	mlx->width = mlx->map->rows * TILE_BOX;
@@ -33,6 +40,7 @@ void	ft_init_mlx(t_mlx *mlx)
 	mlx->img_3d = mlx_new_image(mlx->mlx, mlx->width, mlx->height);
 	if (!mlx->img_3d)
 		safe_exit(mlx);
+	load_textures(mlx);
 }
 
 void	conductor(t_mlx *mlx)
