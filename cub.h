@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:42 by yabad             #+#    #+#             */
-/*   Updated: 2023/09/01 10:03:10 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/06 09:43:52 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ char		get_player_direction(t_mlx *mlx);
 void		render_map(t_mlx *mlx);
 t_map_info	*get_map_info(char *path);
 bool		has_wall(t_mlx *mlx, float x, float y);
+bool		wall_coalition(t_mlx *mlx, float x, float y);
 
 /* Math */
 void		line_draw(t_mlx *mlx, t_cord p0, t_cord p1, unsigned int color);

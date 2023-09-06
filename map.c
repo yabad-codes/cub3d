@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 12:48:11 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/31 17:04:18 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/06 09:43:03 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,15 @@ void	render_map(t_mlx *mlx)
 				draw_tile(mlx->img, i, j, 0x00000000);
 		}
 	}
+}
+
+bool	wall_coalition(t_mlx *mlx, float x, float y)
+{
+	if (mlx->map->grid[(int)(mlx->plyr.y / TILE)][(int)(x / TILE)] == '1')
+		return (true);
+	if (mlx->map->grid[(int)(y / TILE)][(int)(mlx->plyr.x / TILE)] == '1')
+		return (true);
+	return (false);
 }
 
 bool	has_wall(t_mlx *mlx, float x, float y)

@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:07:40 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/31 16:50:07 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/06 09:43:57 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	change_player_coor(t_mlx *mlx, int sign, int key)
 		direction_angle += M_PI / 2;
 	new_x = mlx->plyr.x + sign * mlx->plyr.speed * cos(direction_angle);
 	new_y = mlx->plyr.y + sign * mlx->plyr.speed * sin(direction_angle);
-	if (!has_wall(mlx, new_x, new_y))
+	if (!wall_coalition(mlx, new_x, new_y))
 	{
 		mlx->plyr.x = new_x;
 		mlx->plyr.y = new_y;
