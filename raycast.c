@@ -91,9 +91,11 @@ void	raycaster(t_mlx *mlx)
 						(mlx->width / 2) / tan(mlx->plyr.fov / 2);
 		int texture_offsetx;
 		if (intersection.is_vertical)
-			texture_offsetx = (mlx->no_text->width / TILE_BOX) * (intersection.ystep - (int)(intersection.ystep / TILE_BOX) * TILE_BOX);
+			texture_offsetx = (mlx->no_text->width / TILE) * \
+			(intersection.ystep - (int)(intersection.ystep / TILE) * TILE);
 		else
-			texture_offsetx = (mlx->no_text->width / TILE_BOX) * (intersection.xstep - (int)(intersection.xstep / TILE_BOX) * TILE_BOX);;
+			texture_offsetx = (mlx->no_text->width / TILE) * \
+			(intersection.xstep - (int)(intersection.xstep / TILE) * TILE);
 		draw_wall_height(mlx, id, wall_height, texture_offsetx);
 		ray_angle = normalize_angle(ray_angle + mlx->plyr.fov / num_of_rays);
 		id++;

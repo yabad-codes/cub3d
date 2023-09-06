@@ -64,8 +64,8 @@ int	main(int ac, char **av)
 	conductor(mlx);
 	mlx_key_hook(mlx->mlx, key_handler, mlx);
 	mlx_close_hook(mlx->mlx, cross_handler, mlx);
-	mlx_image_to_window(mlx->mlx, mlx->img, 0, 0);
 	mlx_image_to_window(mlx->mlx, mlx->img_3d, 0, 0);
+	mlx_image_to_window(mlx->mlx, mlx->img, 0, 0);
 	mlx_loop(mlx->mlx);
 	return (0);
 }
