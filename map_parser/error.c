@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 12:05:37 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/29 20:28:25 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/09/07 17:23:07 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ void	error_message(char *message)
 
 void	error_file(char *file, t_map_info *map_scene)
 {
-	error_message(file);
+	char	*error_file_message;
+
+	error_file_message = ft_strjoin(file, " file doesn't exist");
+	error_message(error_file_message);
+	free(error_file_message);
 	free(map_scene);
 	exit(EXIT_FAILURE);
 }

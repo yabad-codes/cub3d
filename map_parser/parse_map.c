@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:45:45 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/29 19:19:18 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/09/07 17:29:00 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,23 @@ void	map_resolution(t_map_info *map_scene)
 	map_scene->height = map_scene->cols * TILE;
 }
 
+bool	valid_mapfile(char *map_file)
+{
+	char	*find_cub_ext;
+
+	find_cub_ext = ft_strrchr(map_file, '.');
+	if (!find_cub_ext)
+		return (false);
+	find_cub_ext = ft_strnstr(find_cub_ext, ".cub", ft_strlen(find_cub_ext));
+	return (find_cub_ext != NULL && ft_strlen(find_cub_ext) == 4);
+}
+
 t_map_info	*parse_map(char *map_file)
 {
 	t_map_info	*map_scene;
 	char		*component_checks[6];
-	char		*valid_map_file;
 
-	valid_map_file = ft_strnstr(map_file, ".cub", ft_strlen(map_file));
-	if (!valid_map_file || ft_strlen(valid_map_file) != 4)
+	if (!valid_mapfile(map_file))
 		error_message("Invalid map file");
 	ft_memset(component_checks, 0, sizeof(component_checks));
 	map_scene = malloc(sizeof(t_map_info));
