@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:42 by yabad             #+#    #+#             */
 /*   Updated: 2023/09/07 12:24:40 by yabad            ###   ########.fr       */
@@ -22,8 +22,8 @@
 # include "MLX42/include/MLX42/MLX42.h"
 # include "map_parser/get_next_line/get_next_line.h"
 
-# define MAX_WIDTH 2560
-# define MAX_HEIGHT 1440
+# define MAX_WIDTH 2500
+# define MAX_HEIGHT 900
 # define TILE_BOX 64
 # define TILE 15
 /*************************************************************/
@@ -78,7 +78,7 @@ void		error_file(char *file, t_map_info *map_scene);
 
 void		error_message(char *message);
 
-// void		error_map_content(char *message);
+u_int32_t	rgb_unit_to_dec(int r, int g, int b, int a);
 
 void		free_2d_arr(char **arr);
 
@@ -118,20 +118,26 @@ typedef struct s_mouse
 
 typedef struct s_mlx_data
 {
-	t_map_info	*map;
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	mlx_image_t	*img_3d;
-	t_player	plyr;
 	t_mouse		mouse;
-	int			width;
-	int			height;
+	t_map_info		*map;
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	mlx_image_t		*img_3d;
+	t_player		plyr;
+	mlx_texture_t	*no_text;
+	mlx_texture_t	*ea_text;
+	mlx_texture_t	*we_text;
+	mlx_texture_t	*so_text;
+	mlx_texture_t	*wall_text;
+	int				width;
+	int				height;
 }	t_mlx;
 
 typedef struct s_cord
 {
 	float	xstep;
 	float	ystep;
+	bool	is_vertical;
 }	t_cord;
 
 /* Player */
@@ -164,4 +170,11 @@ t_cord		horizontal_intersection(t_mlx *mlx, float ray_angle);
 /* Free */
 void		safe_exit(t_mlx *mlx);
 void		free_map_scene(t_map_info *map);
+
+/* Wall texture */
+int			calc_texture_offsetx(t_mlx *mlx, t_cord *intersection);
+void		detect_and_get_wall_texture(t_mlx *mlx, bool is_vertical, \
+											float ray_angle);
+u_int32_t	get_text_pixel(mlx_texture_t *texture, int y, int x);
+
 #endif
