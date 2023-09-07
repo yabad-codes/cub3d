@@ -43,6 +43,7 @@ $(MLXLIB):  # Add a rule to build MLXLIB
 clean:
 	@rm -rf $(OBJ_DIR)
 	@$(MAKE) clean -C $(LIBFT_DIR)
+	@echo "\033[1;32mPROJECT CLEANED SUCCESSFULLY\033[0m"
 
 fclean: clean
 	@rm -f $(NAME) $(NAME_BNS)
