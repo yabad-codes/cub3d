@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:42 by yabad             #+#    #+#             */
-/*   Updated: 2023/09/07 13:06:53 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/09/07 12:24:40 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,15 @@ typedef struct s_player
 	float	r_angle;
 }	t_player;
 
+typedef struct s_mouse
+{
+	int	x;
+	int	y;
+}	t_mouse;
+
 typedef struct s_mlx_data
 {
+	t_mouse		mouse;
 	t_map_info		*map;
 	mlx_t			*mlx;
 	mlx_image_t		*img;
@@ -142,8 +149,8 @@ char		get_player_direction(t_mlx *mlx);
 
 /* Map */
 void		render_map(t_mlx *mlx);
-t_map_info	*get_map_info(char *path);
 bool		has_wall(t_mlx *mlx, float x, float y);
+bool		wall_coalition(t_mlx *mlx, float x, float y);
 
 /* Math */
 void		line_draw(t_mlx *mlx, t_cord p0, t_cord p1, unsigned int color);
@@ -153,6 +160,7 @@ float		normalize_angle(float angle);
 /* Key and mouse handling */
 void		key_handler(mlx_key_data_t key, void *param);
 void		cross_handler(void *param);
+void		mouse_handler(void *param);
 
 /* Raycasting */
 void		raycaster(t_mlx *mlx);
@@ -160,7 +168,6 @@ t_cord		vertical_intersection(t_mlx *mlx, float ray_angle);
 t_cord		horizontal_intersection(t_mlx *mlx, float ray_angle);
 
 /* Free */
-void		free_textures(t_mlx *mlx);
 void		safe_exit(t_mlx *mlx);
 void		free_map_scene(t_map_info *map);
 
