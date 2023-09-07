@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:27 by yabad             #+#    #+#             */
-/*   Updated: 2023/09/01 10:09:15 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/07 09:55:35 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	main(int ac, char **av)
 	conductor(mlx);
 	mlx_key_hook(mlx->mlx, key_handler, mlx);
 	mlx_close_hook(mlx->mlx, cross_handler, mlx);
+	mlx_loop_hook(mlx->mlx, mouse_handler, mlx);
 	mlx_image_to_window(mlx->mlx, mlx->img, 0, 0);
 	mlx_image_to_window(mlx->mlx, mlx->img_3d, 0, 0);
 	mlx_loop(mlx->mlx);

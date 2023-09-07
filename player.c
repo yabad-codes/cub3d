@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:07:40 by yabad             #+#    #+#             */
-/*   Updated: 2023/09/06 09:43:57 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/07 12:06:16 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	init_player(t_mlx *mlx)
 	mlx->plyr.side = TILE / 2;
 	mlx->plyr.speed = 4;
 	mlx->plyr.fov = deg_to_radian(60);
+	mlx->mouse.x = mlx->width / 2;
+	mlx->mouse.y = mlx->height / 2;
 }
 
 void	change_player_coor(t_mlx *mlx, int sign, int key)
