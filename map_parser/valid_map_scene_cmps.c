@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_map_scene_cmps.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:48:32 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/31 15:32:48 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/07 12:17:31 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ bool	is_color_unit_valid(char *color_unit)
 	return (true);
 }
 
-u_int32_t	rgb_units_to_dec(int r, int g, int b)
+u_int32_t	rgb_unit_to_dec(int r, int g, int b, int a)
 {
-	return ((r << 24) | (g << 16) | (b << 8) | 0X55);
+	return ((r << 24) | (g << 16) | (b << 8) | a);
 }
 
 bool	is_valid_rgb_color(char *color_cmp, u_int32_t *color)
@@ -78,8 +78,8 @@ bool	is_valid_rgb_color(char *color_cmp, u_int32_t *color)
 			return (false);
 		}
 	}
-	*color = rgb_units_to_dec(ft_atoi(rgb[0]), \
-				ft_atoi(rgb[1]), ft_atoi(rgb[2]));
+	*color = rgb_unit_to_dec(ft_atoi(rgb[0]), \
+				ft_atoi(rgb[1]), ft_atoi(rgb[2]), 0X55);
 	free_2d_arr(rgb);
 	return (true);
 }

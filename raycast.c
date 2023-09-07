@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:28:34 by yabad             #+#    #+#             */
-/*   Updated: 2023/09/01 10:05:02 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/07 13:06:12 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,12 @@ t_cord	smallest(t_mlx *mlx, t_cord c1, t_cord c2)
 	return (c2);
 }
 
-u_int32_t	txt_color(mlx_texture_t *text, int y, int x)
-{
-	u_int32_t	text_pixel;
-
-	text_pixel = ((u_int32_t*)text->pixels)[text->width * y + x];
-	return ((text_pixel & 0xFF000000) >> 24 | (text_pixel & 0x00FF0000) >> 8
-		| (text_pixel & 0x0000FF00) << 8 | (text_pixel & 0x000000FF) << 24);
-}
-
-void	draw_wall_height(t_mlx *mlx, int id, float wall_height, int text_offsetx)
+void	draw_wall_height(t_mlx *mlx, int id, float wall_height, \
+											int text_offsetx)
 {
 	int	j;
 	int	offsety;
+	int	text_offsety;
 
 	offsety = (mlx->height - wall_height) / 2;
 	j = 0;
@@ -50,8 +43,12 @@ void	draw_wall_height(t_mlx *mlx, int id, float wall_height, int text_offsetx)
 	{
 		if (j > offsety && j < offsety + wall_height)
 		{
-			int text_offsety = (j - offsety) * ((float)mlx->no_text->height / wall_height);
-			mlx_put_pixel(mlx->img_3d, id, j, txt_color(mlx->no_text, text_offsety, text_offsetx));
+			text_offsety = (j - offsety) * \
+			((float)(mlx->wall_text->height) / wall_height);
+			mlx_put_pixel(mlx->img_3d, id, j, \
+			get_text_pixel(mlx->wall_text, text_offsety * \
+				mlx->wall_text->bytes_per_pixel,\
+			 text_offsetx * mlx->wall_text->bytes_per_pixel));
 		}
 		else if (j < offsety)
 			mlx_put_pixel(mlx->img_3d, id, j, mlx->map->ceil_clr);
@@ -89,12 +86,9 @@ void	raycaster(t_mlx *mlx)
 			vertical_intersection(mlx, ray_angle));
 		wall_height = (TILE / get_distance(mlx, ray_angle, intersection)) * \
 						(mlx->width / 2) / tan(mlx->plyr.fov / 2);
-		int texture_offsetx;
-		if (intersection.is_vertical)
-			texture_offsetx = (mlx->no_text->width / TILE_BOX) * (intersection.ystep - (int)(intersection.ystep / TILE_BOX) * TILE_BOX);
-		else
-			texture_offsetx = (mlx->no_text->width / TILE_BOX) * (intersection.xstep - (int)(intersection.xstep / TILE_BOX) * TILE_BOX);;
-		draw_wall_height(mlx, id, wall_height, texture_offsetx);
+		detect_and_get_wall_texture(mlx, intersection.is_vertical, ray_angle);
+		draw_wall_height(mlx, id, wall_height, \
+			calc_texture_offsetx(mlx, &intersection));
 		ray_angle = normalize_angle(ray_angle + mlx->plyr.fov / num_of_rays);
 		id++;
 	}
