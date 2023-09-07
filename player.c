@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:07:40 by yabad             #+#    #+#             */
-/*   Updated: 2023/09/07 12:06:16 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/07 16:48:12 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,7 @@
 
 void	render_player(t_mlx *mlx)
 {
-	t_cord	init;
-	t_cord	dst;
-
-	init.xstep = mlx->plyr.x + mlx->plyr.side / 2;
-	init.ystep = mlx->plyr.y + mlx->plyr.side / 2;
-	dst.xstep = mlx->plyr.x + mlx->plyr.side / 2 + cos(mlx->plyr.r_angle) * 10;
-	dst.ystep = mlx->plyr.y + mlx->plyr.side / 2 + sin(mlx->plyr.r_angle) * 10;
 	draw_player_sqr(mlx);
-	line_draw(mlx, init, dst, 0xFF0000AA);
 	raycaster(mlx);
 }
 
@@ -50,11 +42,11 @@ void	get_player_pos(t_mlx *mlx, float *x, float *y)
 void	init_player(t_mlx *mlx)
 {
 	get_player_pos(mlx, &mlx->plyr.x, &mlx->plyr.y);
-	mlx->plyr.side = TILE / 2;
+	mlx->plyr.side = TILE / 2 * SCALE;
 	mlx->plyr.speed = 4;
 	mlx->plyr.fov = deg_to_radian(60);
-	mlx->mouse.x = mlx->width / 2;
-	mlx->mouse.y = mlx->height / 2;
+	mlx->mouse.x = WIDTH / 2;
+	mlx->mouse.y = HEIGHT / 2;
 }
 
 void	change_player_coor(t_mlx *mlx, int sign, int key)

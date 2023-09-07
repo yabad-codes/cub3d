@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:19:23 by yabad             #+#    #+#             */
-/*   Updated: 2023/09/07 14:46:50 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/07 15:23:30 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	mouse_handler(void *param)
 
 	mlx = (t_mlx *)param;
 	mlx_get_mouse_pos(mlx->mlx, &x, &y);
-	if (x > mlx->width)
+	if (x > WIDTH)
 		mlx->plyr.r_angle += 0.01;
 	if (x < 0)
 		mlx->plyr.r_angle -= 0.01;

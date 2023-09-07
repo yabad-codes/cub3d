@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 16:23:29 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/30 16:24:35 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/07 16:47:26 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ void	draw_player_sqr(t_mlx *mlx)
 	int	i;
 	int	j;
 
-	j = mlx->plyr.y - 1;
-	while (++j < mlx->plyr.y + mlx->plyr.side)
+	j = (mlx->plyr.y - 1) * SCALE;
+	while (++j < (mlx->plyr.y + mlx->plyr.side) * SCALE)
 	{
-		i = mlx->plyr.x - 1;
-		while (++i < mlx->plyr.x + mlx->plyr.side)
+		i = (mlx->plyr.x - 1) * SCALE;
+		while (++i < (mlx->plyr.x + mlx->plyr.side) * SCALE)
 			mlx_put_pixel(mlx->img, i, j, 0xFF0000AA);
 	}
 }

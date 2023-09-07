@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:28:34 by yabad             #+#    #+#             */
-/*   Updated: 2023/09/07 14:47:36 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/07 15:22:14 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	draw_wall_height(t_mlx *mlx, int id, float wall_height, \
 	int	offsety;
 	int	text_offsety;
 
-	offsety = (mlx->height - wall_height) / 2;
+	offsety = (HEIGHT - wall_height) / 2;
 	j = 0;
-	while (j < mlx->height)
+	while (j < HEIGHT)
 	{
 		if (j > offsety && j < offsety + wall_height)
 		{
@@ -78,14 +78,14 @@ void	raycaster(t_mlx *mlx)
 
 	ray_angle = normalize_angle(mlx->plyr.r_angle - (mlx->plyr.fov / 2));
 	id = 0;
-	num_of_rays = mlx->width;
+	num_of_rays = WIDTH;
 	while (id < num_of_rays)
 	{
 		intersection = smallest(mlx, \
 			horizontal_intersection(mlx, ray_angle), \
 			vertical_intersection(mlx, ray_angle));
 		wall_height = (TILE / get_distance(mlx, ray_angle, intersection)) * \
-						(mlx->width / 2) / tan(mlx->plyr.fov / 2);
+						(WIDTH / 2) / tan(mlx->plyr.fov / 2);
 		detect_and_get_wall_texture(mlx, intersection.is_vertical, ray_angle);
 		draw_wall_height(mlx, id, wall_height, \
 			calc_texture_offsetx(mlx, &intersection));
