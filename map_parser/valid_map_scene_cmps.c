@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   valid_map_scene_cmps.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:48:32 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/09/07 12:17:31 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/09/07 19:48:29 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../mandatory/cub.h"
 
 bool	are_textures_valid(char *components[], t_map_info *map_scene)
 {

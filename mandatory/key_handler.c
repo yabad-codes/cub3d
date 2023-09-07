@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   key_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 12:08:04 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/09/07 21:00:22 by yabad            ###   ########.fr       */
+/*   Created: 2023/08/18 13:19:23 by yabad             #+#    #+#             */
+/*   Updated: 2023/09/07 19:32:11 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mandatory/cub.h"
+#include "cub.h"
 
-void	free_2d_arr(char **arr)
+void	key_handler(mlx_key_data_t keydata, void *param)
 {
-	int	i;
+	t_mlx	*mlx;
 
-	i = 0;
-	while (arr && arr[i])
-		free(arr[i++]);
-	free(arr);
-}
-
-void	free_map_scene(t_map_info *map_scene)
-{
-	free_2d_arr(map_scene->grid);
-	free(map_scene->no_text);
-	free(map_scene->so_text);
-	free(map_scene->we_text);
-	free(map_scene->ea_text);
-	free(map_scene);
+	mlx = (t_mlx *)param;
+	if (keydata.key == MLX_KEY_ESCAPE)
+		safe_exit(mlx);
+	if (keydata.key == MLX_KEY_RIGHT || keydata.key == MLX_KEY_LEFT \
+			|| keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_A \
+			|| keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_D)
+		update_player(mlx, keydata);
 }

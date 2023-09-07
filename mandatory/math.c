@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 12:08:04 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/09/07 21:00:22 by yabad            ###   ########.fr       */
+/*   Created: 2023/08/18 13:06:04 by yabad             #+#    #+#             */
+/*   Updated: 2023/09/07 19:40:26 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mandatory/cub.h"
+#include "cub.h"
 
-void	free_2d_arr(char **arr)
+float	ft_max(float a, float b)
 {
-	int	i;
-
-	i = 0;
-	while (arr && arr[i])
-		free(arr[i++]);
-	free(arr);
+	if (a > b)
+		return (a);
+	return (b);
 }
 
-void	free_map_scene(t_map_info *map_scene)
+float	deg_to_radian(float degree)
 {
-	free_2d_arr(map_scene->grid);
-	free(map_scene->no_text);
-	free(map_scene->so_text);
-	free(map_scene->we_text);
-	free(map_scene->ea_text);
-	free(map_scene);
+	return (degree * M_PI / 180);
+}
+
+float	normalize_angle(float angle)
+{
+	angle = remainderf(angle, 2 * M_PI);
+	if (angle < 0)
+		angle += 2 * M_PI;
+	return (angle);
 }

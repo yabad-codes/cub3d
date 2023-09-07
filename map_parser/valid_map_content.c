@@ -6,11 +6,11 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 15:39:14 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/08/30 18:58:04 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/07 19:48:26 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../mandatory/cub.h"
 
 bool	invalid_map_components(char **grid)
 {

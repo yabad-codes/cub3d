@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:45:45 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/09/07 17:39:20 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/09/07 19:48:20 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../mandatory/cub.h"
 
 void	player_direction(t_map_info *map_scene)
 {

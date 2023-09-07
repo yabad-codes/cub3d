@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 12:05:37 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/09/07 17:23:07 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/09/07 19:47:45 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../mandatory/cub.h"
 
 void	error_message(char *message)
 {

@@ -5,29 +5,41 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 12:08:04 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/09/07 21:00:22 by yabad            ###   ########.fr       */
+/*   Created: 2023/08/29 20:26:23 by yabad             #+#    #+#             */
+/*   Updated: 2023/09/07 19:34:19 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mandatory/cub.h"
+#include "cub.h"
 
-void	free_2d_arr(char **arr)
+void	delete_textures(t_mlx *mlx)
 {
-	int	i;
-
-	i = 0;
-	while (arr && arr[i])
-		free(arr[i++]);
-	free(arr);
+	if (mlx->no_text)
+		mlx_delete_texture(mlx->no_text);
+	if (mlx->so_text)
+		mlx_delete_texture(mlx->so_text);
+	if (mlx->ea_text)
+		mlx_delete_texture(mlx->ea_text);
+	if (mlx->we_text)
+		mlx_delete_texture(mlx->we_text);
 }
 
-void	free_map_scene(t_map_info *map_scene)
+void	safe_exit(t_mlx *mlx)
 {
-	free_2d_arr(map_scene->grid);
-	free(map_scene->no_text);
-	free(map_scene->so_text);
-	free(map_scene->we_text);
-	free(map_scene->ea_text);
-	free(map_scene);
+	free_map_scene(mlx->map);
+	if (mlx->img_3d)
+		mlx_delete_image(mlx->mlx, mlx->img_3d);
+	if (mlx->mlx)
+		mlx_terminate(mlx->mlx);
+	delete_textures(mlx);
+	free(mlx);
+	exit(EXIT_FAILURE);
+}
+
+void	cross_handler(void *param)
+{
+	t_mlx	*mlx;
+
+	mlx = (t_mlx *)param;
+	safe_exit(mlx);
 }
