@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 12:48:11 by yabad             #+#    #+#             */
-/*   Updated: 2023/09/06 12:18:33 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/07 16:33:37 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	draw_tile(mlx_image_t *img, int px, int py, unsigned int color)
 	int	i;
 	int	j;
 
-	j = py * TILE;
-	while (j < ((py * TILE) + TILE))
+	j = (py * TILE) * SCALE;
+	while (j < ((py * TILE) + TILE) * SCALE)
 	{
-		i = px * TILE;
-		while (i < ((px * TILE) + TILE))
+		i = (px * TILE) * SCALE;
+		while (i < ((px * TILE) + TILE) * SCALE)
 		{
 			mlx_put_pixel(img, i, j, color);
 			i++;
