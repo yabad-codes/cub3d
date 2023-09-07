@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:27 by yabad             #+#    #+#             */
-/*   Updated: 2023/09/01 10:09:15 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/07 13:21:32 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,21 @@
 
 void	load_textures(t_mlx *mlx)
 {
+	mlx->no_text = NULL;
+	mlx->so_text = NULL;
+	mlx->ea_text = NULL;
+	mlx->we_text = NULL;
 	mlx->no_text = mlx_load_png(mlx->map->no_text);
 	if (!mlx->no_text)
+		safe_exit(mlx);
+	mlx->so_text = mlx_load_png(mlx->map->so_text);
+	if (!mlx->so_text)
+		safe_exit(mlx);
+	mlx->ea_text = mlx_load_png(mlx->map->ea_text);
+	if (!mlx->ea_text)
+		safe_exit(mlx);
+	mlx->we_text = mlx_load_png(mlx->map->we_text);
+	if (!mlx->we_text)
 		safe_exit(mlx);
 }
 

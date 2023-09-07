@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 20:26:23 by yabad             #+#    #+#             */
-/*   Updated: 2023/08/30 20:59:35 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/07 13:20:53 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+void	delete_textures(t_mlx *mlx)
+{
+	if (mlx->no_text)
+		mlx_delete_texture(mlx->no_text);
+	if (mlx->so_text)
+		mlx_delete_texture(mlx->so_text);
+	if (mlx->ea_text)
+		mlx_delete_texture(mlx->ea_text);
+	if (mlx->we_text)
+		mlx_delete_texture(mlx->we_text);
+}
 
 void	safe_exit(t_mlx *mlx)
 {
@@ -21,6 +33,7 @@ void	safe_exit(t_mlx *mlx)
 		mlx_delete_image(mlx->mlx, mlx->img_3d);
 	if (mlx->mlx)
 		mlx_terminate(mlx->mlx);
+	delete_textures(mlx);
 	free(mlx);
 	exit(EXIT_FAILURE);
 }
