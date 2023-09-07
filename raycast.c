@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:28:34 by yabad             #+#    #+#             */
-/*   Updated: 2023/09/07 13:06:12 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/09/07 14:47:36 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	draw_wall_height(t_mlx *mlx, int id, float wall_height, \
 			((float)(mlx->wall_text->height) / wall_height);
 			mlx_put_pixel(mlx->img_3d, id, j, \
 			get_text_pixel(mlx->wall_text, text_offsety * \
-				mlx->wall_text->bytes_per_pixel,\
-			 text_offsetx * mlx->wall_text->bytes_per_pixel));
+				mlx->wall_text->bytes_per_pixel, \
+				text_offsetx * mlx->wall_text->bytes_per_pixel));
 		}
 		else if (j < offsety)
 			mlx_put_pixel(mlx->img_3d, id, j, mlx->map->ceil_clr);

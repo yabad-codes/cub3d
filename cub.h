@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:42 by yabad             #+#    #+#             */
-/*   Updated: 2023/09/07 12:24:40 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/07 14:48:10 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ typedef struct s_mouse
 
 typedef struct s_mlx_data
 {
-	t_mouse		mouse;
+	t_mouse			mouse;
 	t_map_info		*map;
 	mlx_t			*mlx;
 	mlx_image_t		*img;

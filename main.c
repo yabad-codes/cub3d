@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:27 by yabad             #+#    #+#             */
-/*   Updated: 2023/09/07 09:55:35 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/07 14:47:04 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	ft_init_mlx(t_mlx *mlx)
 		error_message("Map is too big.");
 		safe_exit(mlx);
 	}
-	mlx->mlx = mlx_init(mlx->width, mlx->height, "(yabad && ael-maar)'s cub3D", false);
+	mlx->mlx = mlx_init(mlx->width, mlx->height, \
+		"(yabad && ael-maar)'s cub3D", false);
 	if (!mlx->mlx)
 		safe_exit(mlx);
 	mlx->img = mlx_new_image(mlx->mlx, mlx->map->width, mlx->map->height);
