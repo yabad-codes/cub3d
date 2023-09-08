@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:52:25 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/10/08 12:37:32 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/09/08 12:55:28 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static char	*search_str(char *haystack, char *needle, size_t len)
 		while (haystack[check_str]
 			&& haystack[check_str] == needle[check_str] && j < len)
 		{
-				j++;
-				check_str++;
+			j++;
+			check_str++;
 		}
 		if (check_str == needle_len)
 			return ((char *)haystack);
