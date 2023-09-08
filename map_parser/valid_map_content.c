@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 15:39:14 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/09/07 19:48:26 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/08 12:31:58 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ bool	valid_map_content(char **grid)
 		return (error_message("Invalid components in the map content") \
 		, false);
 	else if (no_player_exist(grid))
-		return (error_message("Player not exist") \
+		return (error_message("Player doesn't exist") \
 		, false);
 	else if (duplicate_players(grid))
 		return (error_message("Duplicate Players"), false);
