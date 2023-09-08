@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 19:07:07 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/09/08 12:57:28 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/08 17:12:19 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 t_identifier	get_type(char *type_cmp)
 {
+	if (!type_cmp)
+		return (NONE);
 	if (!ft_strcmp(type_cmp, "NO"))
 		return (NO_TEXT);
 	else if (!ft_strcmp(type_cmp, "SO"))
@@ -29,7 +31,7 @@ t_identifier	get_type(char *type_cmp)
 	else
 		return (NONE);
 }
-
+#include "stdio.h"
 bool	extract_cmps(char *line, char *component_checks[], \
 						t_map_info *map_scene)
 {

@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:27 by yabad             #+#    #+#             */
-/*   Updated: 2023/09/07 19:25:04 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/08 17:57:09 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 void	load_textures(t_mlx *mlx)
 {
-	mlx->no_text = NULL;
-	mlx->so_text = NULL;
-	mlx->ea_text = NULL;
-	mlx->we_text = NULL;
 	mlx->no_text = mlx_load_png(mlx->map->no_text);
 	if (!mlx->no_text)
 		safe_exit(mlx);
@@ -32,11 +28,17 @@ void	load_textures(t_mlx *mlx)
 		safe_exit(mlx);
 }
 
+#include <stdio.h>
+
 void	ft_init_mlx(t_mlx *mlx)
 {
 	mlx->mlx = NULL;
 	mlx->img = NULL;
 	mlx->img_3d = NULL;
+	mlx->no_text = NULL;
+	mlx->so_text = NULL;
+	mlx->ea_text = NULL;
+	mlx->we_text = NULL;
 	mlx->mlx = mlx_init(WIDTH, HEIGHT, \
 		"(yabad && ael-maar)'s cub3D", false);
 	if (!mlx->mlx)

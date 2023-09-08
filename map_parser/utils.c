@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 12:16:34 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/09/07 19:48:22 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/08 17:12:32 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ bool	is_adjacent_to_empty_space(char **grid, size_t x, size_t y)
 
 bool	is_newline(char **component)
 {
+	if (component[0] == NULL)
+		return (false);
 	if (!ft_strcmp(component[0], "\n"))
 	{
 		free(component[0]);
