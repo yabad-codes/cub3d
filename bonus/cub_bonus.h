@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:42 by yabad             #+#    #+#             */
-/*   Updated: 2023/09/07 19:23:36 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/08 15:10:19 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,6 @@ bool		has_wall(t_mlx *mlx, float x, float y);
 bool		wall_coalition(t_mlx *mlx, float x, float y);
 
 /* Math */
-void		line_draw(t_mlx *mlx, t_cord p0, t_cord p1, unsigned int color);
 float		deg_to_radian(float degree);
 float		normalize_angle(float angle);
 

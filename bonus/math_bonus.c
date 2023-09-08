@@ -6,18 +6,11 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 13:06:04 by yabad             #+#    #+#             */
-/*   Updated: 2023/09/07 19:25:13 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/08 15:08:50 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
-
-float	ft_max(float a, float b)
-{
-	if (a > b)
-		return (a);
-	return (b);
-}
 
 float	deg_to_radian(float degree)
 {
