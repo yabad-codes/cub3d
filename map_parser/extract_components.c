@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 19:07:07 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/09/08 12:31:02 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/08 12:57:28 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ void	check_unexist_map_components(t_map_info *map_scene, \
 	{
 		if (component_checks[i] == NULL)
 		{
-			error_map_cmps("Some elements doesn't exist in the map scene", NULL, \
+			error_map_cmps("Some elements doesn't \
+				exist in the map scene", NULL, \
 			component_checks, map_scene);
 		}
 		i++;
