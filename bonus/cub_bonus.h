@@ -6,7 +6,7 @@
 /*   By: yabad <yabad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:03:42 by yabad             #+#    #+#             */
-/*   Updated: 2023/09/08 15:10:19 by yabad            ###   ########.fr       */
+/*   Updated: 2023/09/08 15:14:21 by yabad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include "../libft/libft.h"
 # include <stdbool.h>
 # include <fcntl.h>
-# include <stdio.h>
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "../map_parser/get_next_line/get_next_line.h"
 
